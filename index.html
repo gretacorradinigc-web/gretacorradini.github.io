@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greta Corradini — Portfolio HR</title>
+<meta name="description" content="Profilo HR con background in UX e tecnologie digitali. Recruiting, formazione e digitalizzazione dei processi.">
+
+<!-- Open Graph (LinkedIn, Facebook, WhatsApp) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Greta Corradini — Portfolio HR">
+<meta property="og:description" content="Profilo HR con background in UX e tecnologie digitali. Recruiting, formazione e digitalizzazione dei processi.">
+<meta property="og:image" content="social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="it_IT">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Greta Corradini — Portfolio HR">
+<meta name="twitter:description" content="Profilo HR con background in UX e tecnologie digitali. Recruiting, formazione e digitalizzazione dei processi.">
+<meta name="twitter:image" content="social-card.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f2ec;
+  --ink: #1a1f24;
+  --muted: #5c6168;
+  --accent: #1f4d52;
+  --accent-soft: #d4ddd9;
+  --line: #1a1f2415;
+  --card: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  font-family: 'Inter Tight', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
+.container { max-width: 1180px; margin: 0 auto; padding: 0 32px; width: 100%; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; width: 100%;
+  padding: 24px 32px;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  background: rgba(245, 242, 236, 0.85);
+  border-bottom: 1px solid var(--line);
+}
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+}
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  position: relative;
+  padding: 4px 0;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 1px; background: var(--accent);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 140px 0 80px;
+  position: relative;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 780px;
+}
+.hero-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-label::before {
+  content: ''; width: 32px; height: 1px; background: var(--accent);
+}
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin-bottom: 32px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+.hero-sub {
+  font-size: 1.08rem;
+  color: var(--muted);
+  max-width: 480px;
+  margin-bottom: 40px;
+  line-height: 1.65;
+}
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+.btn {
+  padding: 14px 26px;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 500;
+  font-size: 0.93rem;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+}
+.btn-primary:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn-ghost:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+.btn svg { width: 14px; height: 14px; }
+
+/* SECTIONS */
+section { padding: 120px 0; }
+
+.section-label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::before {
+  content: ''; width: 32px; height: 1px; background: var(--accent);
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 60px;
+  max-width: 720px;
+}
+.section-title em { font-style: italic; color: var(--accent); }
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+  width: 100%;
+}
+.about-photo {
+  position: relative;
+  aspect-ratio: 4/5;
+  background: var(--accent);
+  border-radius: 2px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+}
+.about-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+}
+.about-photo-caption {
+  position: absolute;
+  bottom: 16px; left: 16px; right: 16px;
+  color: var(--bg);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+  z-index: 2;
+}
+.about-text p {
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+.about-text p:last-child { color: var(--muted); }
+.about-stats {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  margin-top: 40px;
+}
+.stat {
+  padding: 28px 24px;
+  border-right: 1px solid var(--line);
+}
+.stat:last-child { border-right: none; }
+.stat:first-child { padding-left: 0; }
+.stat:last-child { padding-right: 0; }
+.stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* SKILLS */
+.skills-section { background: var(--ink); color: var(--bg); }
+.skills-section .section-label { color: var(--accent-soft); }
+.skills-section .section-label::before { background: var(--accent-soft); }
+.skills-section .section-title { color: var(--bg); }
+.skills-section .section-title em { color: var(--accent-soft); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.08);
+}
+.skill-block {
+  background: var(--ink);
+  padding: 36px 28px;
+}
+.skill-block h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 18px;
+  color: var(--bg);
+}
+.skill-block ul { list-style: none; }
+.skill-block li {
+  font-size: 0.92rem;
+  color: rgba(245, 242, 236, 0.7);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  padding-left: 16px;
+}
+.skill-block li:last-child { border-bottom: none; }
+.skill-block li::before {
+  content: '—';
+  position: absolute; left: 0;
+  color: var(--accent-soft);
+}
+
+/* PROJECTS */
+.projects-list { display: flex; flex-direction: column; gap: 0; }
+.project {
+  display: grid;
+  grid-template-columns: 80px 1fr 1.5fr 100px;
+  gap: 40px;
+  padding: 36px 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+  transition: padding 0.3s ease;
+  cursor: pointer;
+}
+.project:last-child { border-bottom: 1px solid var(--line); }
+.project:hover {
+  padding-left: 16px;
+  background: linear-gradient(90deg, var(--accent-soft) 0%, transparent 30%);
+}
+.project-num {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+.project-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.project-desc {
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+.project-tags {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: 10px;
+}
+.tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 4px 10px;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  font-weight: 500;
+}
+.project-year {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1rem;
+  text-align: right;
+}
+
+/* CONTACT */
+.contact-section { background: var(--accent); color: var(--bg); }
+.contact-section .section-label { color: var(--accent-soft); }
+.contact-section .section-label::before { background: var(--accent-soft); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.contact-headline {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--bg);
+  margin-bottom: 32px;
+}
+.contact-headline em { font-style: italic; opacity: 0.85; }
+.contact-sub {
+  color: rgba(245, 242, 236, 0.8);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 460px;
+}
+.contact-actions {
+  display: flex; flex-direction: column; gap: 14px;
+}
+.contact-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 24px 28px;
+  text-decoration: none;
+  color: var(--bg);
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.25s ease;
+  border-radius: 2px;
+}
+.contact-card:hover {
+  background: rgba(255,255,255,0.12);
+  transform: translateX(4px);
+}
+.contact-card-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.contact-card-value {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+}
+.contact-card svg { width: 18px; height: 18px; opacity: 0.7; }
+
+/* FOOTER */
+footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: flex; justify-content: space-between;
+}
+
+/* RESPONSIVE */
+@media (max-width: 880px) {
+  nav { padding: 14px 20px; gap: 12px; }
+  .logo { font-size: 0.95rem; white-space: nowrap; }
+  .nav-links { gap: 14px; }
+  .nav-links a { font-size: 0.78rem; }
+  .container { padding: 0 20px; }
+  .hero { padding: 100px 0 60px; }
+  .hero-grid { max-width: 100%; }
+  .hero-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero h1 { font-size: clamp(2rem, 7vw, 3.2rem); }
+  .hero-sub { max-width: 100%; font-size: 1rem; }
+  .hero-cta { flex-direction: column; align-items: flex-start; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-photo { max-width: 220px; aspect-ratio: 4/5; }
+  .about-stats { grid-template-columns: 1fr 1fr; margin-top: 20px; }
+  .stat { padding: 24px 20px; border-bottom: 1px solid var(--line); }
+  .stat:nth-child(odd) { border-right: 1px solid var(--line); padding-left: 0; }
+  .stat:nth-child(even) { border-right: none; padding-right: 0; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .project { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+  .project-year { text-align: left; }
+  .web-grid { grid-template-columns: 1fr; gap: 20px; }
+  .web-intro { margin-top: 4px; margin-bottom: 36px; font-size: 0.98rem; }
+  .section-title { font-size: clamp(1.6rem, 5vw, 2.4rem); margin-bottom: 36px; }
+  section { padding: 72px 0; }
+  .hero-carousel-wrap { margin-top: 36px; }
+  .hero-carousel-item { width: calc(80vw - 32px); max-width: 300px; }
+}
+
+@media (max-width: 480px) {
+  .logo { font-size: 0.85rem; }
+  .nav-links { gap: 10px; }
+  .nav-links a { font-size: 0.72rem; }
+  .container { padding: 0 16px; }
+  .hero { padding: 90px 0 48px; }
+  .hero h1 { font-size: clamp(1.8rem, 9vw, 2.6rem); }
+  .hero-sub { font-size: 0.95rem; }
+  .btn { padding: 12px 20px; font-size: 0.88rem; }
+  .section-title { font-size: clamp(1.4rem, 7vw, 2rem); margin-bottom: 28px; }
+  section { padding: 56px 0; }
+  .hero-carousel-item { width: calc(90vw - 32px); }
+  .about-photo { max-width: 180px; }
+  .stat { padding: 18px 12px; }
+}
+
+/* SCROLL ANIMATION */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HERO CAROUSEL */
+.hero-carousel-wrap {
+  margin-top: 52px;
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  padding-bottom: 8px;
+}
+.hero-carousel-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-carousel-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--muted);
+}
+.hero-carousel-track-outer {
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  width: 100%;
+  max-width: 100%;
+  touch-action: pan-y;
+}
+.hero-carousel-track-outer:active {
+  cursor: grabbing;
+}
+.hero-carousel-track {
+  display: flex;
+  gap: 16px;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+.hero-carousel-item {
+  flex: 0 0 auto;
+  width: clamp(220px, 28vw, 280px);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--line);
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hero-carousel-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.12);
+  border-color: var(--accent);
+}
+.hero-carousel-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px 20px 18px;
+  min-height: 200px;
+}
+.hero-carousel-item-tag {
+  font-size: 0.67rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.hero-carousel-item-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+.hero-carousel-item-role {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 12px;
+}
+.hero-carousel-item-body {
+  font-size: 0.8rem;
+  color: var(--ink);
+  line-height: 1.6;
+  opacity: 0.85;
+  flex: 1;
+}
+.hero-carousel-item-date {
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.hero-carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.carousel-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--ink);
+}
+.carousel-btn:hover {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.carousel-btn svg {
+  width: 14px;
+  height: 14px;
+}
+.carousel-dots {
+  display: flex;
+  gap: 6px;
+  margin-left: 4px;
+}
+.carousel-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--line);
+  border: 1px solid var(--muted);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.carousel-dot.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  width: 18px;
+  border-radius: 3px;
+}
+
+@media (max-width: 880px) {
+  .hero-carousel-item { width: 220px; }
+}
+
+/* WEB PROJECTS */
+.web-intro {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 60ch;
+  margin-bottom: 56px;
+  margin-top: 8px;
+}
+.web-intro em {
+  font-style: italic;
+  color: var(--accent);
+}
+.web-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+.web-card {
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-decoration: none;
+  color: var(--bg);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.web-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+}
+.web-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  transition: transform 0.5s ease;
+}
+.web-card:hover .web-card-bg {
+  transform: scale(1.04);
+}
+.web-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(26,31,36,0) 20%,
+    rgba(26,31,36,0.55) 60%,
+    rgba(26,31,36,0.92) 100%
+  );
+  transition: opacity 0.3s ease;
+}
+.web-card:hover .web-card-overlay {
+  opacity: 0.85;
+}
+.web-card-body {
+  position: relative;
+  z-index: 2;
+  padding: 24px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+.web-card-info { flex: 1; min-width: 0; }
+.web-card-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.web-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  color: #fff;
+}
+.web-card-desc {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.5;
+  max-width: 380px;
+}
+.web-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  border-radius: 2px;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+  transition: background 0.25s ease, border-color 0.25s ease;
+  flex-shrink: 0;
+}
+.web-card:hover .web-card-cta {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.6);
+}
+.web-card-cta svg { width: 13px; height: 13px; }
+@media (max-width: 880px) {
+  .web-grid { grid-template-columns: 1fr; gap: 20px; }
+  .web-card { aspect-ratio: 4/3; }
+  .web-card-body { flex-direction: column; align-items: flex-start; gap: 14px; }
+}
+@media (max-width: 480px) {
+  .web-card { aspect-ratio: 3/2; }
+  .web-card-title { font-size: 1.1rem; }
+  .web-card-body { padding: 18px 20px; }
+}
+
+/* MOBILE OVERFLOW FIX — prevents horizontal scroll on all screens */
+img, video, iframe, svg {
+  max-width: 100%;
+  height: auto;
+}
+section, header, footer, nav {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Greta <span>Corradini</span></div>
+  <div class="nav-links">
+    <a href="#about">Chi sono</a>
+    <a href="#skills">Competenze</a>
+    <a href="#projects">Progetti</a>
+    <a href="#web">Siti web</a>
+    <a href="#contact">Contatti</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-label">HR · Formazione · Innovazione</div>
+        <h1>Persone al centro,<br><em>tecnologia</em> al servizio.</h1>
+        <p class="hero-sub">
+          Mi occupo di recruiting, formazione e digitalizzazione dei processi HR.
+          Porto background in UX design, comunicazione e AI generativa
+          all'interno dei processi che coinvolgono le persone.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">
+            Lavoriamo insieme
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="cv-greta-corradini.pdf" class="btn btn-ghost" download>
+            Scarica CV
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+          </a>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- CAROUSEL LAVORI -->
+        <div class="hero-carousel-wrap">
+          <div class="hero-carousel-label">Lavori recenti</div>
+          <div class="hero-carousel-track-outer" id="carouselOuter">
+            <div class="hero-carousel-track" id="carouselTrack">
+
+              <div class="hero-carousel-item">
+                <div>
+                  <div class="hero-carousel-item-tag">Recruiting · Formazione · HR</div>
+                  <div class="hero-carousel-item-title">Gruppo Barchetti</div>
+                  <div class="hero-carousel-item-role">HR – Recruiting & Formazione interna</div>
+                  <div class="hero-carousel-item-body">Supporto ai processi di recruiting, screening CV, colloqui telefonici e in presenza. Redazione annunci, coordinamento colloqui e comunicazioni con candidati. Realizzazione materiali LinkedIn e supporto a progetti di digitalizzazione HR.</div>
+                </div>
+                <div class="hero-carousel-item-date">02/2026 – attuale · Bolzano, BZ</div>
+              </div>
+
+              <div class="hero-carousel-item">
+                <div>
+                  <div class="hero-carousel-item-tag">Formazione · Microsoft 365</div>
+                  <div class="hero-carousel-item-title">SAIP Formazione</div>
+                  <div class="hero-carousel-item-role">Docente formativo</div>
+                  <div class="hero-carousel-item-body">Erogazione di lezioni su Microsoft 365: Word, Excel, PowerPoint, Outlook, Teams, OneNote, Copilot. Adattamento dei contenuti a classi eterogenee e contesti formativi professionalizzanti.</div>
+                </div>
+                <div class="hero-carousel-item-date">11/2025 – 01/2026 · Latina, LT (FAD)</div>
+              </div>
+
+              <div class="hero-carousel-item">
+                <div>
+                  <div class="hero-carousel-item-tag">Formazione · Tutoraggio</div>
+                  <div class="hero-carousel-item-title">ENFAP Trentino</div>
+                  <div class="hero-carousel-item-role">Docente e tutor formativo</div>
+                  <div class="hero-carousel-item-body">Conduzione di attività didattiche in corsi professionali. Supporto organizzativo, assistenza ai colleghi docenti e monitoraggio dell'apprendimento dei partecipanti.</div>
+                </div>
+                <div class="hero-carousel-item-date">04/2024 – 12/2026 · Trento, TN</div>
+              </div>
+
+              <div class="hero-carousel-item">
+                <div>
+                  <div class="hero-carousel-item-tag">Università · Tutoraggio</div>
+                  <div class="hero-carousel-item-title">Università di Trento</div>
+                  <div class="hero-carousel-item-role">Tutor di analisi matematica</div>
+                  <div class="hero-carousel-item-body">Supporto a studenti universitari con esercizi e preparazione esami. Elaborazione di materiali didattici e feedback personalizzati.</div>
+                </div>
+                <div class="hero-carousel-item-date">09/2023 – 12/2024 · Rovereto, TN</div>
+              </div>
+
+              <div class="hero-carousel-item">
+                <div>
+                  <div class="hero-carousel-item-tag">Amministrazione · Sanità</div>
+                  <div class="hero-carousel-item-title">Ospedale Santa Chiara</div>
+                  <div class="hero-carousel-item-role">Front/back office</div>
+                  <div class="hero-carousel-item-body">Gestione cassa, referti e documentazione amministrativa. Accoglienza e assistenza agli utenti.</div>
+                </div>
+                <div class="hero-carousel-item-date">07/2023 – 09/2023 · Trento, TN</div>
+              </div>
+
+              <div class="hero-carousel-item">
+                <div>
+                  <div class="hero-carousel-item-tag">Vendite · Ospitalità</div>
+                  <div class="hero-carousel-item-title">HUB CMP & Hotel Caffè Centrale</div>
+                  <div class="hero-carousel-item-role">Addetta vendite e cameriera</div>
+                  <div class="hero-carousel-item-body">Attività a contatto con il pubblico con sviluppo di competenze relazionali, gestione del cliente e organizzazione operativa.</div>
+                </div>
+                <div class="hero-carousel-item-date">08/2021 – 09/2022 · Mezzolombardo, TN</div>
+              </div>
+
+            </div>
+          </div>
+          <div class="hero-carousel-controls">
+            <button class="carousel-btn" id="carouselPrev" aria-label="Precedente">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+            <button class="carousel-btn" id="carouselNext" aria-label="Successivo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+            <div class="carousel-dots" id="carouselDots"></div>
+          </div>
+        </div>
+
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Chi sono</div>
+    <h2 class="section-title">Un profilo HR <em>che pensa in digitale.</em></h2>
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="greta.png" alt="Greta Corradini">
+        <div class="about-photo-caption">Mezzolombardo · TN</div>
+      </div>
+      <div class="about-text">
+        <p>
+          Laureata con lode in Interfacce e Tecnologie della Comunicazione,
+          con un background che attraversa UX design, scienze cognitive e tecnologie digitali.
+        </p>
+        <p>
+          Oggi lavoro nell'area HR del Gruppo Barchetti, dove mi occupo di
+          recruiting, supporto alla selezione, formazione interna e
+          digitalizzazione dei processi. Parallelamente seguo attività legate
+          all'innovazione HR e all'utilizzo dell'AI nei processi di analisi.
+        </p>
+        <p>
+          Credo che le persone vadano selezionate, formate e accompagnate
+          con strumenti pensati per loro, non adattati a fatica.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="stat-num">110L</div>
+          <div class="stat-label">Laurea triennale UniTrento</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4+</div>
+          <div class="stat-label">Aree di competenza</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Lingue (IT · EN · DE)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2026</div>
+          <div class="stat-label">Anno di partenza in HR</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills-section">
+  <div class="container">
+    <div class="section-label">Competenze</div>
+    <h2 class="section-title">Dove unisco <em>metodo</em> e strumenti.</h2>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <h3>HR & Recruiting</h3>
+        <ul>
+          <li>Screening CV e analisi profili</li>
+          <li>Colloqui telefonici e in presenza</li>
+          <li>Redazione annunci e mansionari</li>
+          <li>Sintesi candidato e report</li>
+          <li>Coordinamento iter di selezione</li>
+          <li>Definizione criteri valutativi</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h3>Formazione & LMS</h3>
+        <ul>
+          <li>Erogazione lezioni Microsoft 365</li>
+          <li>Progettazione contenuti formativi</li>
+          <li>Valutazione piattaforme LMS</li>
+          <li>Adattamento a classi eterogenee</li>
+          <li>Tutoring e supporto didattico</li>
+          <li>Feedback personalizzati</li>
+        </ul>
+      </div>
+      <div class="skill-block">
+        <h3>Digitale & AI</h3>
+        <ul>
+          <li>Microsoft 365 + Copilot</li>
+          <li>ATS (Allibo, Indeed, LinkedIn)</li>
+          <li>Figma · Canva · Notion</li>
+          <li>AI generativa per analisi e sintesi</li>
+          <li>UX design e prototipazione</li>
+          <li>Reti neurali (Simbrain)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Progetti selezionati</div>
+    <h2 class="section-title">Quattro modi in cui ho messo <em>tecnologia e persone</em> nello stesso progetto.</h2>
+    <div class="projects-list">
+
+      <div class="project">
+        <div class="project-num">01</div>
+        <div>
+          <div class="project-title">AI Quiz</div>
+          <div class="project-tags">
+            <span class="tag">AI Generativa</span>
+            <span class="tag">Interfacce Linguistiche</span>
+          </div>
+        </div>
+        <div class="project-desc">
+          Agente conversazionale costruito con Cheshire Cat AI (framework open source
+          per agenti conversazionali di Piero Savastano). Dato un argomento a scelta
+          dell'utente, genera una serie di quiz tematici e chiude con una curiosità.
+          Progetto di gruppo per il corso di Interfacce Linguistiche.
+        </div>
+        <div class="project-year">2024</div>
+      </div>
+
+      <div class="project">
+        <div class="project-num">02</div>
+        <div>
+          <div class="project-title">Hotelity</div>
+          <div class="project-tags">
+            <span class="tag">UX Design</span>
+            <span class="tag">Service Design</span>
+          </div>
+        </div>
+        <div class="project-desc">
+          Prototipo high-fidelity in Figma di un'app per la gestione operativa del personale
+          alberghiero. Analisi degli stakeholder (cucina, sala, reception, pulizie,
+          manutenzione, coordinamento), costruzione di personas e mappatura di tredici
+          pain points, ciascuno tradotto in una funzionalità dell'interfaccia.
+          Sistema fondato su Material Design 3.
+        </div>
+        <div class="project-year">2024</div>
+      </div>
+
+      <div class="project">
+        <div class="project-num">03</div>
+        <div>
+          <div class="project-title">AlpMind</div>
+          <div class="project-tags">
+            <span class="tag">Identità Visiva</span>
+            <span class="tag">Graphic Design</span>
+          </div>
+        </div>
+        <div class="project-desc">
+          Identità visiva e materiali di comunicazione per AlpMind, progetto di formazione
+          aziendale in montagna fondato da una guida alpina UIAGM e un formatore.
+          Costruzione del marchio e progettazione della brochure illustrativa
+          (chi sono, metodo Orientare–Attraversare–Riflettere, valori, contatti).
+        </div>
+        <div class="project-year">2025</div>
+      </div>
+
+      <div class="project">
+        <div class="project-num">04</div>
+        <div>
+          <div class="project-title">Analisi qualità dell'acqua</div>
+          <div class="project-tags">
+            <span class="tag">Rete Neurale</span>
+            <span class="tag">Data Analysis</span>
+          </div>
+        </div>
+        <div class="project-desc">
+          Rete neurale artificiale implementata in Simbrain per classificare
+          la qualità dell'acqua su parametri ecologici. Accuratezza del 100%
+          sul test set. Raccolta, normalizzazione dati e addestramento del modello.
+        </div>
+        <div class="project-year">2025</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WEB PROJECTS -->
+<section id="web">
+  <div class="container">
+    <div class="section-label">Siti web</div>
+    <h2 class="section-title">Progetti web <em>costruiti da zero</em>, uno per ogni settore.</h2>
+    <p class="web-intro">Quattro esercizi di stile, ciascuno con un <em>tono visivo</em> e un pubblico diverso: dallo studio legale dal taglio classico alla torrefazione specialty, dalla palestra contemporanea all'osteria di paese. Mini-progetti pensati per esplorare linguaggi, palette e architetture diverse.</p>
+    <div class="web-grid">
+
+      <a class="web-card" href="nero-selecto.html">
+        <div class="web-card-bg" style="background-image: url('nero-selecto.jpeg');"></div>
+        <div class="web-card-overlay"></div>
+        <div class="web-card-body">
+          <div class="web-card-info">
+            <div class="web-card-tag">Specialty Coffee</div>
+            <div class="web-card-title">Nero Selecto</div>
+            <div class="web-card-desc">Sito per una torrefazione artigianale. Estetica dark, tipografia elegante, atmosfera ricercata.</div>
+          </div>
+          <div class="web-card-cta">
+            Esplora il progetto
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <a class="web-card" href="zenith-studio.html">
+        <div class="web-card-bg" style="background-image: url('zenith-studio.jpeg');"></div>
+        <div class="web-card-overlay"></div>
+        <div class="web-card-body">
+          <div class="web-card-info">
+            <div class="web-card-tag">Fitness & Benessere</div>
+            <div class="web-card-title">ZENITH Studio</div>
+            <div class="web-card-desc">Palestra multidisciplinare — Yoga, Pilates, CrossFit. Layout moderno con identità visiva coerente.</div>
+          </div>
+          <div class="web-card-cta">
+            Esplora il progetto
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <a class="web-card" href="marchetti-associati.html">
+        <div class="web-card-bg" style="background-image: url('marchetti-associati.jpeg');"></div>
+        <div class="web-card-overlay"></div>
+        <div class="web-card-body">
+          <div class="web-card-info">
+            <div class="web-card-tag">Studio Legale</div>
+            <div class="web-card-title">Marchetti & Associati</div>
+            <div class="web-card-desc">Sito istituzionale per uno studio legale. Tono formale, struttura chiara, comunicazione autorevole.</div>
+          </div>
+          <div class="web-card-cta">
+            Esplora il progetto
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+      <a class="web-card" href="ristorante.html">
+        <div class="web-card-bg" style="background-image: url('osteria-quercia.jpeg');"></div>
+        <div class="web-card-overlay"></div>
+        <div class="web-card-body">
+          <div class="web-card-info">
+            <div class="web-card-tag">Ristorazione</div>
+            <div class="web-card-title">Osteria della Quercia</div>
+            <div class="web-card-desc">Sito per un'osteria italiana. Calore visivo, menù e prenotazioni in primo piano.</div>
+          </div>
+          <div class="web-card-cta">
+            Esplora il progetto
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="section-label">Contatti</div>
+    <div class="contact-grid">
+      <div>
+        <h2 class="contact-headline">Parliamone.<br><em>Cerco contesti</em> che mettono le persone al centro.</h2>
+        <p class="contact-sub">
+          Sono interessata a contesti strutturati e innovativi,
+          con particolare focus su recruiting, formazione, people development
+          e tecnologie applicate alla gestione delle persone.
+        </p>
+      </div>
+      <div class="contact-actions">
+        <a href="mailto:gretacorradini.gc@gmail.com" class="contact-card">
+          <div>
+            <div class="contact-card-label">Email</div>
+            <div class="contact-card-value">gretacorradini.gc@gmail.com</div>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/greta-corradini" target="_blank" class="contact-card">
+          <div>
+            <div class="contact-card-label">LinkedIn</div>
+            <div class="contact-card-value">Greta Corradini</div>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="cv-greta-corradini.pdf" class="contact-card" download>
+          <div>
+            <div class="contact-card-label">Documento</div>
+            <div class="contact-card-value">Scarica CV (PDF)</div>
+          </div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display: flex; justify-content: space-between; width: 100%;">
+    <div>© 2026 Greta Corradini</div>
+    <div>Mezzolombardo · TN</div>
+  </div>
+</footer>
+
+<script>
+// Animazioni scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('section').forEach(el => {
+  el.classList.add('fade-up');
+  observer.observe(el);
+});
+
+// CAROUSEL
+(function() {
+  const track = document.getElementById('carouselTrack');
+  const outer = document.getElementById('carouselOuter');
+  const btnPrev = document.getElementById('carouselPrev');
+  const btnNext = document.getElementById('carouselNext');
+  const dotsContainer = document.getElementById('carouselDots');
+
+  if (!track) return;
+
+  const items = track.querySelectorAll('.hero-carousel-item');
+  const total = items.length;
+  let current = 0;
+  let isDragging = false;
+  let startX = 0;
+  let scrollStart = 0;
+
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsContainer.appendChild(dot);
+  }
+
+  function getItemWidth() {
+    // gap is 16px
+    return items[0].getBoundingClientRect().width + 16;
+  }
+
+  // Recalculate position on resize
+  window.addEventListener('resize', () => {
+    track.style.transition = 'none';
+    track.style.transform = 'translateX(-' + (current * getItemWidth()) + 'px)';
+    setTimeout(() => { track.style.transition = 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)'; }, 50);
+  });
+
+  function updateDots() {
+    dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function goTo(index) {
+    current = Math.max(0, Math.min(index, total - 1));
+    track.style.transform = 'translateX(-' + (current * getItemWidth()) + 'px)';
+    updateDots();
+  }
+
+  btnNext.addEventListener('click', () => goTo(current + 1));
+  btnPrev.addEventListener('click', () => goTo(current - 1));
+
+  function dragStart(x) {
+    isDragging = true;
+    startX = x;
+    scrollStart = current * getItemWidth();
+    track.style.transition = 'none';
+  }
+  function dragMove(x) {
+    if (!isDragging) return;
+    const diff = startX - x;
+    const pos = Math.max(0, Math.min(scrollStart + diff, (total - 1) * getItemWidth()));
+    track.style.transform = 'translateX(-' + pos + 'px)';
+  }
+  function dragEnd(x) {
+    if (!isDragging) return;
+    isDragging = false;
+    track.style.transition = 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
+    const diff = startX - x;
+    if (Math.abs(diff) > 50) {
+      goTo(diff > 0 ? current + 1 : current - 1);
+    } else {
+      goTo(current);
+    }
+  }
+
+  outer.addEventListener('mousedown', e => dragStart(e.clientX));
+  window.addEventListener('mousemove', e => dragMove(e.clientX));
+  window.addEventListener('mouseup', e => dragEnd(e.clientX));
+
+  outer.addEventListener('touchstart', e => dragStart(e.touches[0].clientX), { passive: true });
+  outer.addEventListener('touchmove', e => dragMove(e.touches[0].clientX), { passive: true });
+  outer.addEventListener('touchend', e => dragEnd(e.changedTouches[0].clientX));
+})();
+
+</script>
+
+</body>
+</html>
