@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Osteria della Quercia — Cucina Italiana</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+  :root {
+    --cream: #f5f0e8;
+    --warm-white: #faf7f2;
+    --terracotta: #b85c38;
+    --terracotta-dark: #8a3e22;
+    --terracotta-light: #d4795a;
+    --olive: #5c6b3a;
+    --olive-light: #7d8f52;
+    --brown: #3d2b1f;
+    --brown-mid: #6b4c37;
+    --gold: #c9a84c;
+    --gold-light: #e0c06a;
+    --text-dark: #2a1f14;
+    --text-mid: #5c4a38;
+    --text-light: #8a7060;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Crimson Text', Georgia, serif;
+    background: var(--warm-white);
+    color: var(--text-dark);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(42, 31, 20, 0.96);
+    backdrop-filter: blur(6px);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-light);
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(245,240,232,0.85);
+    text-decoration: none;
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+
+  /* HERO */
+  #hero {
+    position: relative;
+    height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  #hero-canvas {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(42,31,20,0.35) 0%, rgba(42,31,20,0.55) 60%, rgba(42,31,20,0.75) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    color: var(--cream);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: heroIn 1.4s ease 0.4s forwards;
+  }
+  @keyframes heroIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.08;
+    margin-bottom: 1.4rem;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+  }
+  .hero-sub {
+    font-size: 1.25rem;
+    color: rgba(245,240,232,0.88);
+    max-width: 520px;
+    margin: 0 auto 2.4rem;
+    font-style: italic;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2.4rem;
+    background: var(--terracotta);
+    color: var(--cream);
+    text-decoration: none;
+    font-family: 'Crimson Text', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none; cursor: pointer;
+    transition: background 0.25s, transform 0.18s;
+  }
+  .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-block;
+    padding: 0.85rem 2.4rem;
+    background: transparent;
+    color: var(--cream);
+    border: 1.5px solid rgba(245,240,232,0.6);
+    text-decoration: none;
+    font-family: 'Crimson Text', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.25s, color 0.25s, transform 0.18s;
+    margin-left: 1rem;
+  }
+  .btn-outline:hover { border-color: var(--gold-light); color: var(--gold-light); transform: translateY(-2px); }
+
+  /* DIVIDER */
+  .divider {
+    display: flex; align-items: center; justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+  .divider-line { flex: 1; max-width: 120px; height: 1px; background: var(--gold); opacity: 0.4; }
+  .divider-icon { color: var(--gold); font-size: 1rem; opacity: 0.7; }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; }
+  .section-center { text-align: center; max-width: 800px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    color: var(--terracotta);
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--brown);
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+  .section-intro {
+    color: var(--text-mid);
+    font-size: 1.1rem;
+    font-style: italic;
+    max-width: 560px;
+    margin: 0 auto 3rem;
+  }
+
+  /* STORIA */
+  #storia { background: var(--cream); }
+  .storia-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  #storia-canvas { width: 100%; height: 380px; display: block; border-radius: 2px; }
+  .storia-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.3rem;
+    color: var(--brown);
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+  }
+  .storia-text p { color: var(--text-mid); margin-bottom: 1rem; font-size: 1.05rem; }
+  .storia-firma {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--terracotta);
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+  }
+
+  /* MENU */
+  #menu { background: var(--warm-white); }
+  .menu-tabs {
+    display: flex; justify-content: center; gap: 0; margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(184,92,56,0.2);
+  }
+  .menu-tab {
+    padding: 0.75rem 2rem;
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    background: none; border: none; cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .menu-tab.active { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+  .menu-tab:hover { color: var(--terracotta-light); }
+  .menu-panel { display: none; }
+  .menu-panel.active { display: block; }
+  .menu-grid {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 4rem;
+  }
+  .menu-item { border-bottom: 1px dashed rgba(90,60,40,0.2); padding-bottom: 1rem; }
+  .menu-item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.2rem; }
+  .menu-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--brown);
+  }
+  .menu-item-price {
+    font-family: 'Crimson Text', serif;
+    color: var(--terracotta);
+    font-size: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-left: 1rem;
+  }
+  .menu-item-desc { color: var(--text-light); font-size: 0.92rem; font-style: italic; }
+  .menu-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 1px 7px;
+    background: rgba(201,168,76,0.15);
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.35);
+    margin-left: 0.5rem;
+    letter-spacing: 0.05em;
+    vertical-align: middle;
+  }
+
+  /* GALLERIA */
+  #galleria { background: var(--brown); }
+  #galleria .section-title { color: var(--cream); }
+  #galleria .section-label { color: var(--gold-light); }
+  #galleria .section-intro { color: rgba(245,240,232,0.65); }
+  .gallery-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    gap: 8px;
+  }
+  .gallery-cell { overflow: hidden; position: relative; }
+  .gallery-cell:first-child { grid-row: 1 / 3; }
+  .gallery-cell canvas { width: 100%; height: 100%; display: block; transition: transform 0.5s ease; object-fit: cover; }
+  .gallery-cell:hover canvas { transform: scale(1.04); }
+  .gallery-cell .cell-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1rem 1.2rem 0.8rem;
+    background: linear-gradient(to top, rgba(42,31,20,0.8), transparent);
+    color: var(--cream); font-style: italic; font-size: 0.9rem;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .gallery-cell:hover .cell-label { opacity: 1; }
+
+  /* PRENOTAZIONE */
+  #prenotazione { background: var(--cream); }
+  .reservation-wrap {
+    max-width: 800px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+  }
+  .res-form-group { margin-bottom: 1.4rem; }
+  .res-form-group label {
+    display: block; margin-bottom: 0.4rem;
+    font-size: 0.9rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--text-mid);
+    font-family: 'Crimson Text', serif;
+  }
+  .res-form-group input,
+  .res-form-group select,
+  .res-form-group textarea {
+    width: 100%;
+    height: 48px;
+    padding: 0 1rem;
+    background: var(--warm-white);
+    border: 1px solid rgba(90,60,40,0.25);
+    border-radius: 0;
+    color: var(--text-dark);
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    line-height: 1.4;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: border-color 0.2s;
+  }
+  .res-form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23b85c38' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.4rem;
+  }
+  .res-form-group input[type="date"] { min-height: 48px; }
+  .res-form-group input:focus,
+  .res-form-group select:focus,
+  .res-form-group textarea:focus {
+    border-color: var(--terracotta);
+  }
+  .res-form-group textarea { height: auto; min-height: 90px; padding: 0.7rem 1rem; resize: vertical; }
+  .res-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--brown);
+    margin-bottom: 1.2rem;
+  }
+  .res-detail { display: flex; gap: 0.8rem; margin-bottom: 1rem; align-items: flex-start; }
+  .res-detail-icon { color: var(--terracotta); margin-top: 3px; font-size: 1.1rem; }
+  .res-detail-text { font-size: 1rem; color: var(--text-mid); }
+  .res-detail-text strong { color: var(--brown); display: block; }
+  #confirm-msg {
+    display: none; padding: 1rem; background: rgba(92,107,58,0.1);
+    border-left: 3px solid var(--olive); color: var(--olive);
+    font-style: italic; font-size: 1rem; margin-top: 1rem;
+  }
+
+  /* MAPPA */
+  #contatti { background: var(--brown); }
+  #contatti .section-title { color: var(--cream); }
+  #contatti .section-label { color: var(--gold-light); }
+  #contatti .section-intro { color: rgba(245,240,232,0.65); }
+  .contatti-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.6fr;
+    gap: 4rem; align-items: start;
+  }
+  .contact-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2rem;
+  }
+  .contact-item { margin-bottom: 1.8rem; }
+  .contact-item-label {
+    font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 0.3rem;
+    font-family: 'Crimson Text', serif;
+  }
+  .contact-item-value { color: var(--cream); font-size: 1.05rem; line-height: 1.5; }
+  #map-canvas { width: 100%; height: 360px; display: block; }
+
+  /* FOOTER */
+  footer {
+    background: #1a110a;
+    padding: 2.5rem 3rem;
+    text-align: center;
+    color: rgba(245,240,232,0.4);
+    font-size: 0.9rem;
+  }
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--gold-light);
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+
+  /* SCROLL ANIMATION */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* HAMBURGER + MOBILE MENU */
+  .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 30px; height: 30px; background: none; border: none; cursor: pointer; padding: 0; z-index: 120; flex-shrink: 0; }
+  .nav-toggle span { display: block; height: 2px; width: 100%; background: var(--gold-light); transition: transform 0.3s, opacity 0.3s; }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 90;
+    background: rgba(42, 31, 20, 0.98); backdrop-filter: blur(10px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1.6rem; padding: 5rem 2rem 3rem; list-style: none;
+    opacity: 0; visibility: hidden; transform: translateY(-12px);
+    transition: opacity 0.35s, transform 0.35s, visibility 0.35s;
+  }
+  .mobile-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
+  .mobile-menu a { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--cream); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
+  .mobile-menu a:hover { color: var(--gold-light); }
+  body.menu-open { overflow: hidden; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.2rem; }
+    .nav-logo { font-size: 1.1rem; }
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+    section { padding: 4rem 1.5rem; }
+    .storia-grid, .reservation-wrap, .contatti-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .menu-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-cell:first-child { grid-row: auto; }
+    .gallery-cell { min-height: 200px; }
+    .gallery-cell .cell-label { opacity: 1; }
+
+    .hero-content { padding: 0 1.2rem; }
+    .hero-sub { font-size: 1.1rem; }
+    .btn-primary, .btn-outline { display: block; width: 100%; max-width: 320px; margin: 0 auto; text-align: center; }
+    .btn-outline { margin-top: 0.8rem; margin-left: auto; }
+
+    .menu-tabs { flex-wrap: wrap; gap: 0.2rem; }
+    .menu-tab { padding: 0.65rem 1.2rem; }
+  }
+
+  @media (max-width: 460px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .storia-text h2 { font-size: 1.9rem; }
+    .menu-item-name { font-size: 1rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Osteria della Quercia</a>
+  <ul class="nav-links">
+    <li><a href="#storia">Storia</a></li>
+    <li><a href="#menu">Menù</a></li>
+    <li><a href="#galleria">Galleria</a></li>
+    <li><a href="#prenotazione">Prenota</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+  </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<ul class="mobile-menu" id="mobile-menu">
+  <li><a href="#storia">Storia</a></li>
+  <li><a href="#menu">Menù</a></li>
+  <li><a href="#galleria">Galleria</a></li>
+  <li><a href="#prenotazione">Prenota</a></li>
+  <li><a href="#contatti">Contatti</a></li>
+</ul>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Dal 1978 — Tradizione e Sapore</span>
+    <h1 class="hero-title">Osteria<br>della Quercia</h1>
+    <p class="hero-sub">Cucina italiana autentica, fatta con le mani e con il cuore, nel cuore del borgo antico.</p>
+    <a href="#prenotazione" class="btn-primary">Prenota un tavolo</a>
+    <a href="#menu" class="btn-outline">Scopri il menù</a>
+  </div>
+</section>
+
+<!-- STORIA -->
+<section id="storia">
+  <div class="storia-grid">
+    <canvas id="storia-canvas"></canvas>
+    <div class="storia-text reveal">
+      <span class="section-label">La nostra storia</span>
+      <h2>Tre generazioni di passione per la tavola</h2>
+      <p>L'Osteria della Quercia nasce nel 1978 dalla volontà di Carmela e Giuseppe Ferri di offrire ai propri ospiti la stessa cucina di casa: genuina, stagionale e preparata con ingredienti scelti ogni mattina al mercato locale.</p>
+      <p>Oggi, guidata dal figlio Marco e dalla nipote Sofia, l'osteria conserva intatte le ricette di famiglia, arricchendole con una sensibilità moderna che rispetta le radici senza rinunciare alla ricerca.</p>
+      <p>La quercia centenaria che ombreggia il cortile ha assistito a tutto questo, silenziosa e fedele come i nostri valori.</p>
+      <div class="storia-firma">— Famiglia Ferri</div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="section-center reveal">
+    <span class="section-label">La cucina</span>
+    <h2 class="section-title">Il nostro menù</h2>
+    <p class="section-intro">Ingredienti locali, ricette tramandate, stagionalità rispettata. Il menù cambia ogni settimana.</p>
+  </div>
+
+  <div class="menu-tabs">
+    <button class="menu-tab active" data-tab="antipasti">Antipasti</button>
+    <button class="menu-tab" data-tab="primi">Primi</button>
+    <button class="menu-tab" data-tab="secondi">Secondi</button>
+    <button class="menu-tab" data-tab="dolci">Dolci</button>
+  </div>
+
+  <div id="antipasti" class="menu-panel active">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Bruschetta al pomodoro</span><span class="menu-item-price">€ 7</span></div><div class="menu-item-desc">Pane casereccio tostato, pomodorini di stagione, basilico fresco, aglio, extravergine</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Tagliere dei salumi <span class="menu-badge">Casa</span></span><span class="menu-item-price">€ 14</span></div><div class="menu-item-desc">Selezione di salumi artigianali: prosciutto crudo, finocchiona, lardo di Colonnata</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Burrata pugliese</span><span class="menu-item-price">€ 11</span></div><div class="menu-item-desc">Burrata fresca su crema di pomodori arrosto, pistacchi tostati, menta</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Polenta fritta <span class="menu-badge">Vegano</span></span><span class="menu-item-price">€ 8</span></div><div class="menu-item-desc">Polenta al rosmarino fritta, salsa verde alla toscana, peperoncino</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Zuppa di fagioli</span><span class="menu-item-price">€ 9</span></div><div class="menu-item-desc">Fagioli cannellini con lardo, salvia e pane raffermo soffritto</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Frittura di verdure</span><span class="menu-item-price">€ 9</span></div><div class="menu-item-desc">Zucchine, fiori di zucca e melanzane in pastella leggera, maionese allo zafferano</div></div>
+    </div>
+  </div>
+
+  <div id="primi" class="menu-panel">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Pappardelle al cinghiale <span class="menu-badge">Casa</span></span><span class="menu-item-price">€ 16</span></div><div class="menu-item-desc">Pasta fatta a mano, ragù di cinghiale cotto 4 ore con vino rosso e ginepro</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Ribollita</span><span class="menu-item-price">€ 13</span></div><div class="menu-item-desc">Zuppa toscana di pane con cavolo nero, fagioli, carote e sedano</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Risotto allo zafferano</span><span class="menu-item-price">€ 15</span></div><div class="menu-item-desc">Carnaroli, zafferano dell'Aquila, midollo, Parmigiano Reggiano 36 mesi</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Tagliolini al tartufo</span><span class="menu-item-price">€ 19</span></div><div class="menu-item-desc">Pasta all'uovo tirata sottile, burro montato, tartufo nero estivo</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Strozzapreti al pomodoro</span><span class="menu-item-price">€ 12</span></div><div class="menu-item-desc">Salsa di pomodoro San Marzano, basilico, extravergine a crudo</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Gnocchi al ragù bianco</span><span class="menu-item-price">€ 14</span></div><div class="menu-item-desc">Gnocchi di patate fatti in casa, ragù bianco di vitello, timo fresco</div></div>
+    </div>
+  </div>
+
+  <div id="secondi" class="menu-panel">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Bistecca alla Fiorentina</span><span class="menu-item-price">€ 38</span></div><div class="menu-item-desc">Chianina IGP, al sangue, solo sale grosso e rosmarino. Al kg: € 58</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Arista arrosto</span><span class="menu-item-price">€ 19</span></div><div class="menu-item-desc">Lonza di maiale al forno con aglio, finocchio selvatico, patate al fondo</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Baccalà mantecato</span><span class="menu-item-price">€ 17</span></div><div class="menu-item-desc">Merluzzo salato lavorato con olio, polenta gialla morbida, olive taggiasche</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Tagliata al rosmarino</span><span class="menu-item-price">€ 24</span></div><div class="menu-item-desc">Manzo frollato 28 giorni, rucola selvatica, scaglie di Grana, aceto balsamico</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Pollo alla cacciatora</span><span class="menu-item-price">€ 16</span></div><div class="menu-item-desc">Pollo ruspante, olive, capperi, pomodori, vino bianco, alloro</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Trippa alla fiorentina</span><span class="menu-item-price">€ 14</span></div><div class="menu-item-desc">Trippa di vitello in umido con pomodoro, Parmigiano, peperoncino</div></div>
+    </div>
+  </div>
+
+  <div id="dolci" class="menu-panel">
+    <div class="menu-grid">
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Tiramisù della Quercia <span class="menu-badge">Casa</span></span><span class="menu-item-price">€ 8</span></div><div class="menu-item-desc">Ricetta di nonna Carmela: savoiardi, mascarpone, caffè ristretto, cacao amaro</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Panna cotta al miele</span><span class="menu-item-price">€ 7</span></div><div class="menu-item-desc">Panna cotta al millefiori, coulis di frutti di bosco freschi</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Castagnaccio</span><span class="menu-item-price">€ 6</span></div><div class="menu-item-desc">Farina di castagne, rosmarino, uvetta, pinoli, ricotta fresca a lato</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Cantucci e Vin Santo</span><span class="menu-item-price">€ 9</span></div><div class="menu-item-desc">Biscotti di Prato con mandorle intere, Vin Santo del Chianti Doc</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Semifreddo al torrone</span><span class="menu-item-price">€ 8</span></div><div class="menu-item-desc">Semifreddo artigianale, torrone morbido di mandorle, salsa di caramello salato</div></div>
+      <div class="menu-item"><div class="menu-item-header"><span class="menu-item-name">Sorbetto al limone</span><span class="menu-item-price">€ 6</span></div><div class="menu-item-desc">Sorbetto fatto in casa con limoni di Amalfi, servito in guscio di limone</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERIA -->
+<section id="galleria">
+  <div class="section-center reveal">
+    <span class="section-label">Immagini</span>
+    <h2 class="section-title">La nostra cucina</h2>
+    <p class="section-intro">Luoghi, piatti e atmosfere dell'Osteria della Quercia.</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-cell"><canvas id="gc0"></canvas><div class="cell-label">Il nostro cortile</div></div>
+    <div class="gallery-cell"><canvas id="gc1"></canvas><div class="cell-label">Pasta fresca</div></div>
+    <div class="gallery-cell"><canvas id="gc2"></canvas><div class="cell-label">Vini della casa</div></div>
+    <div class="gallery-cell"><canvas id="gc3"></canvas><div class="cell-label">La sala interna</div></div>
+    <div class="gallery-cell"><canvas id="gc4"></canvas><div class="cell-label">Antipasti del giorno</div></div>
+  </div>
+</section>
+
+<!-- PRENOTAZIONE -->
+<section id="prenotazione">
+  <div class="section-center reveal">
+    <span class="section-label">Prenota</span>
+    <h2 class="section-title">Riserva il tuo tavolo</h2>
+    <p class="section-intro">Siamo felici di ospitarti. Compila il modulo o chiamaci direttamente.</p>
+  </div>
+  <div class="reservation-wrap">
+    <form id="res-form" class="reveal">
+      <div class="res-form-group">
+        <label>Nome e Cognome</label>
+        <input type="text" placeholder="Mario Rossi" required>
+      </div>
+      <div class="res-form-group">
+        <label>Email</label>
+        <input type="email" placeholder="mario@email.com">
+      </div>
+      <div class="res-form-group">
+        <label>Telefono</label>
+        <input type="tel" placeholder="+39 333 000 0000">
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; align-items:end;">
+        <div class="res-form-group">
+          <label>Data</label>
+          <input type="date">
+        </div>
+        <div class="res-form-group">
+          <label>Orario</label>
+          <select>
+            <option>12:30</option><option>13:00</option><option>13:30</option>
+            <option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option>
+          </select>
+        </div>
+      </div>
+      <div class="res-form-group">
+        <label>Numero di ospiti</label>
+        <select>
+          <option>1 persona</option><option>2 persone</option><option>3 persone</option>
+          <option>4 persone</option><option>5 persone</option><option>6+ persone</option>
+        </select>
+      </div>
+      <div class="res-form-group">
+        <label>Note o richieste speciali</label>
+        <textarea placeholder="Allergie, occasioni speciali, preferenze di posto…"></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%">Conferma prenotazione</button>
+      <div id="confirm-msg">✓ Prenotazione ricevuta! La contatteremo a breve per conferma.</div>
+    </form>
+
+    <div class="res-info reveal">
+      <h3>Come trovarci</h3>
+      <div class="res-detail">
+        <div class="res-detail-icon">📍</div>
+        <div class="res-detail-text"><strong>Indirizzo</strong>Via della Quercia, 12<br>53100 Siena (SI)</div>
+      </div>
+      <div class="res-detail">
+        <div class="res-detail-icon">📞</div>
+        <div class="res-detail-text"><strong>Telefono</strong>0577 123 456</div>
+      </div>
+      <div class="res-detail">
+        <div class="res-detail-icon">✉️</div>
+        <div class="res-detail-text"><strong>Email</strong>info@osteriadellaquercia.it</div>
+      </div>
+      <div class="res-detail">
+        <div class="res-detail-icon">🕐</div>
+        <div class="res-detail-text"><strong>Orari</strong>Martedì–Domenica<br>12:00–15:00 | 19:30–23:00<br>Lunedì chiuso</div>
+      </div>
+      <div class="res-detail">
+        <div class="res-detail-icon">🅿️</div>
+        <div class="res-detail-text"><strong>Parcheggio</strong>Parcheggio gratuito convenzionato a 200 m dall'ingresso</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATTI / MAPPA -->
+<section id="contatti">
+  <div class="section-center reveal">
+    <span class="section-label">Dove siamo</span>
+    <h2 class="section-title">Vieni a trovarci</h2>
+    <p class="section-intro">Nel cuore del centro storico di Siena, a pochi passi dalla Piazza del Campo.</p>
+  </div>
+  <div class="contatti-grid reveal">
+    <div class="contact-card">
+      <div class="contact-item">
+        <div class="contact-item-label">Indirizzo</div>
+        <div class="contact-item-value">Via della Quercia, 12<br>53100 Siena (SI)</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Telefono</div>
+        <div class="contact-item-value">0577 123 456</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Orari settimanali</div>
+        <div class="contact-item-value">
+          Mar–Ven: 12–15 | 19:30–23<br>
+          Sab–Dom: 12–15:30 | 19–23:30<br>
+          <span style="color: rgba(201,168,76,0.7); font-size: 0.9rem;">Lunedì: chiuso</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-label">Social</div>
+        <div class="contact-item-value">
+          @osteriadellaquercia<br>
+          <span style="font-size:0.9rem; color: rgba(245,240,232,0.5);">Instagram · Facebook</span>
+        </div>
+      </div>
+    </div>
+    <canvas id="map-canvas"></canvas>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">Osteria della Quercia</span>
+  <p>Via della Quercia, 12 — 53100 Siena — P.IVA 01234567890</p>
+  <p style="margin-top:0.4rem;">© 2024 Osteria della Quercia di Marco Ferri</p>
+</footer>
+
+<script>
+// ============================================================
+//  UTILITY
+// ============================================================
+function rnd(a, b) { return a + Math.random() * (b - a); }
+function lerp(a, b, t) { return a + (b - a) * t; }
+function hsl(h, s, l) { return `hsl(${h},${s}%,${l}%)`; }
+
+// Seeded noise (simple hash-based pseudo-noise for repeatable results)
+function sn(x, y) {
+  let n = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
+  return n - Math.floor(n);
+}
+function smoothNoise(x, y) {
+  let fx = Math.floor(x), fy = Math.floor(y);
+  let tx = x - fx, ty = y - fy;
+  tx = tx * tx * (3 - 2 * tx);
+  ty = ty * ty * (3 - 2 * ty);
+  return lerp(lerp(sn(fx,fy), sn(fx+1,fy), tx),
+              lerp(sn(fx,fy+1), sn(fx+1,fy+1), tx), ty);
+}
+
+// ============================================================
+//  HERO — Campagna toscana al tramonto
+// ============================================================
+function drawHero() {
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  // Sky gradient
+  const sky = ctx.createLinearGradient(0, 0, 0, H * 0.55);
+  sky.addColorStop(0,   '#1a0e2e');
+  sky.addColorStop(0.3, '#4a1f0f');
+  sky.addColorStop(0.7, '#c2501a');
+  sky.addColorStop(1,   '#e8842a');
+  ctx.fillStyle = sky;
+  ctx.fillRect(0, 0, W, H);
+
+  // Sun glow
+  const sunX = W * 0.38, sunY = H * 0.38;
+  const glow = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, W * 0.45);
+  glow.addColorStop(0,   'rgba(255,210,80,0.55)');
+  glow.addColorStop(0.3, 'rgba(220,120,30,0.25)');
+  glow.addColorStop(1,   'rgba(0,0,0,0)');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, W, H);
+
+  // Sun disc
+  ctx.beginPath();
+  ctx.arc(sunX, sunY, W * 0.045, 0, Math.PI * 2);
+  const sunG = ctx.createRadialGradient(sunX, sunY, 0, sunX, sunY, W * 0.045);
+  sunG.addColorStop(0, '#fff8d0');
+  sunG.addColorStop(0.5, '#ffd060');
+  sunG.addColorStop(1, '#e08020');
+  ctx.fillStyle = sunG;
+  ctx.fill();
+
+  // Haze band
+  const haze = ctx.createLinearGradient(0, H * 0.45, 0, H * 0.65);
+  haze.addColorStop(0, 'rgba(220,150,60,0.25)');
+  haze.addColorStop(1, 'rgba(80,45,20,0)');
+  ctx.fillStyle = haze;
+  ctx.fillRect(0, H * 0.45, W, H * 0.2);
+
+  // Rolling hills — multiple layers
+  const hills = [
+    { y: 0.52, h: 0.12, c: '#3d2510', c2: '#2a1a0c' },
+    { y: 0.58, h: 0.15, c: '#4a2e14', c2: '#3a2010' },
+    { y: 0.63, h: 0.20, c: '#2e1e0c', c2: '#1e1308' },
+  ];
+
+  hills.forEach(({ y, h, c, c2 }, i) => {
+    ctx.beginPath();
+    ctx.moveTo(0, H);
+    const pts = 80;
+    for (let j = 0; j <= pts; j++) {
+      const px = (j / pts) * W;
+      const ny = smoothNoise(j * 0.08 + i * 10, i * 3.7) * 0.06;
+      ctx.lineTo(px, H * (y + ny));
+    }
+    ctx.lineTo(W, H);
+    ctx.closePath();
+    const hg = ctx.createLinearGradient(0, H * y, 0, H * (y + h));
+    hg.addColorStop(0, c);
+    hg.addColorStop(1, c2);
+    ctx.fillStyle = hg;
+    ctx.fill();
+  });
+
+  // Cypress trees silhouette
+  function drawCypress(x, y, h, w) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.bezierCurveTo(x - w, y + h * 0.3, x - w * 1.2, y + h * 0.7, x - w * 0.4, y + h);
+    ctx.lineTo(x + w * 0.4, y + h);
+    ctx.bezierCurveTo(x + w * 1.2, y + h * 0.7, x + w, y + h * 0.3, x, y);
+    ctx.fillStyle = '#1a0f06';
+    ctx.fill();
+  }
+
+  const cypressRow = [
+    [W*0.12, H*0.52],[W*0.14, H*0.52],[W*0.16, H*0.52],
+    [W*0.60, H*0.55],[W*0.62, H*0.55],[W*0.64, H*0.55],[W*0.66, H*0.55],
+    [W*0.82, H*0.54],[W*0.84, H*0.54],[W*0.86, H*0.54],
+  ];
+  cypressRow.forEach(([cx, cy]) => {
+    const th = rnd(H * 0.08, H * 0.13);
+    drawCypress(cx, cy - th, th, th * 0.22);
+  });
+
+  // Farmhouse silhouette
+  function farmhouse(fx, fy, fw, fh) {
+    ctx.fillStyle = '#120b04';
+    ctx.fillRect(fx, fy, fw, fh);
+    ctx.beginPath();
+    ctx.moveTo(fx - fw * 0.05, fy);
+    ctx.lineTo(fx + fw * 0.5, fy - fh * 0.5);
+    ctx.lineTo(fx + fw * 1.05, fy);
+    ctx.fill();
+    // Window glow
+    ctx.fillStyle = 'rgba(255, 200, 80, 0.7)';
+    ctx.fillRect(fx + fw * 0.2, fy + fh * 0.35, fw * 0.18, fh * 0.25);
+    ctx.fillRect(fx + fw * 0.62, fy + fh * 0.35, fw * 0.18, fh * 0.25);
+  }
+  farmhouse(W * 0.68, H * 0.57, W * 0.07, H * 0.07);
+  farmhouse(W * 0.25, H * 0.58, W * 0.05, H * 0.05);
+
+  // Foreground dark ground
+  const fg = ctx.createLinearGradient(0, H * 0.75, 0, H);
+  fg.addColorStop(0, '#1a0e06');
+  fg.addColorStop(1, '#0d0804');
+  ctx.fillStyle = fg;
+  ctx.fillRect(0, H * 0.75, W, H * 0.25);
+
+  // Stars
+  ctx.fillStyle = 'rgba(255,240,210,0.9)';
+  for (let i = 0; i < 180; i++) {
+    const sx = rnd(0, W), sy = rnd(0, H * 0.42);
+    const bright = smoothNoise(sx * 0.01, sy * 0.01 + i);
+    if (bright > 0.55) {
+      const r = rnd(0.5, 1.8);
+      ctx.globalAlpha = rnd(0.3, 0.9);
+      ctx.beginPath();
+      ctx.arc(sx, sy, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  ctx.globalAlpha = 1;
+}
+
+// ============================================================
+//  STORIA — Cucina rustica con tegami e fiamma
+// ============================================================
+function drawStoria() {
+  const canvas = document.getElementById('storia-canvas');
+  if (!canvas) return;
+  const dpr = window.devicePixelRatio || 1;
+  const parent = canvas.parentElement;
+  const rect = parent ? parent.getBoundingClientRect() : { width: 0, height: 0 };
+  const W = rect.width > 10 ? rect.width : 500;
+  const H = 380;
+  canvas.width = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  canvas.style.width = '100%'; canvas.style.height = H + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // Background: stone wall texture
+  for (let y = 0; y < H; y += 4) {
+    for (let x = 0; x < W; x += 4) {
+      const n = smoothNoise(x * 0.15, y * 0.15);
+      const l = 18 + n * 12;
+      ctx.fillStyle = `rgb(${l+14},${l+8},${l})`;
+      ctx.fillRect(x, y, 4, 4);
+    }
+  }
+
+  // Stone blocks
+  ctx.strokeStyle = 'rgba(0,0,0,0.35)';
+  ctx.lineWidth = 1;
+  const bh = 38;
+  for (let row = 0; row * bh < H; row++) {
+    const off = (row % 2) * 55;
+    for (let bx = -off; bx < W + 80; bx += 110) {
+      ctx.strokeRect(bx + 2, row * bh + 2, 105, bh - 4);
+    }
+  }
+
+  // Fireplace arch
+  const fx = W * 0.5, fy = H * 0.75, fw = W * 0.55, fh = H * 0.42;
+  ctx.beginPath();
+  ctx.moveTo(fx - fw / 2, fy);
+  ctx.lineTo(fx - fw / 2, fy - fh * 0.35);
+  ctx.arc(fx, fy - fh * 0.35, fw / 2, Math.PI, 0);
+  ctx.lineTo(fx + fw / 2, fy);
+  ctx.closePath();
+  ctx.fillStyle = '#1a0e06';
+  ctx.fill();
+  ctx.strokeStyle = '#4a3220';
+  ctx.lineWidth = 3;
+  ctx.stroke();
+
+  // Fire glow ambient
+  const glowR = ctx.createRadialGradient(fx, fy - 20, 5, fx, fy - 20, fw * 0.8);
+  glowR.addColorStop(0, 'rgba(255,180,30,0.4)');
+  glowR.addColorStop(0.5, 'rgba(255,100,10,0.15)');
+  glowR.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = glowR;
+  ctx.fillRect(0, 0, W, H);
+
+  // Logs
+  function log(lx, ly, lw, angle) {
+    ctx.save();
+    ctx.translate(lx, ly);
+    ctx.rotate(angle);
+    ctx.fillStyle = '#3d2010';
+    ctx.fillRect(-lw / 2, -7, lw, 14);
+    ctx.fillStyle = '#5a2e14';
+    ctx.fillRect(-lw / 2 + 4, -5, lw - 8, 10);
+    ctx.restore();
+  }
+  log(fx - 15, fy - 18, 80, 0.35);
+  log(fx + 10, fy - 18, 80, -0.28);
+
+  // Flames
+  function flame(fmx, fmy, h, w, t) {
+    ctx.beginPath();
+    ctx.moveTo(fmx, fmy);
+    ctx.bezierCurveTo(
+      fmx - w, fmy - h * 0.35,
+      fmx - w * 0.5 + Math.sin(t) * w * 0.3, fmy - h * 0.7,
+      fmx + Math.cos(t * 1.3) * w * 0.15, fmy - h
+    );
+    ctx.bezierCurveTo(
+      fmx + w * 0.5 + Math.sin(t * 0.8) * w * 0.2, fmy - h * 0.7,
+      fmx + w, fmy - h * 0.3,
+      fmx, fmy
+    );
+    ctx.closePath();
+  }
+
+  const flameData = [
+    { x: fx - 22, w: 18, h: 55 },
+    { x: fx, w: 24, h: 72 },
+    { x: fx + 20, w: 16, h: 48 },
+  ];
+  flameData.forEach(({ x, w, h }, i) => {
+    flame(x, fy - 22, h, w, i * 1.5);
+    const fg2 = ctx.createLinearGradient(x, fy - 22 - h, x, fy - 22);
+    fg2.addColorStop(0, 'rgba(255,240,120,0.9)');
+    fg2.addColorStop(0.4, 'rgba(255,140,20,0.95)');
+    fg2.addColorStop(1, 'rgba(220,40,5,0.7)');
+    ctx.fillStyle = fg2;
+    ctx.fill();
+  });
+
+  // Embers
+  for (let i = 0; i < 18; i++) {
+    const ex = fx + rnd(-fw * 0.35, fw * 0.35);
+    const ey = fy - rnd(5, 25);
+    ctx.fillStyle = `rgba(255,${Math.floor(rnd(80,200))},0,${rnd(0.4,0.9)})`;
+    ctx.beginPath();
+    ctx.arc(ex, ey, rnd(1, 3), 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Hanging pots
+  function pot(px, py, pw, ph) {
+    // Hook + chain
+    ctx.strokeStyle = '#4a3220';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(px, py - ph * 1.4);
+    ctx.lineTo(px, py - ph * 0.8);
+    ctx.stroke();
+    // Pot body
+    ctx.beginPath();
+    ctx.ellipse(px, py, pw / 2, ph * 0.35, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#2a1a0a';
+    ctx.fill();
+    ctx.strokeStyle = '#5a3a1a';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    // Lid
+    ctx.beginPath();
+    ctx.ellipse(px, py - ph * 0.35, pw * 0.55, ph * 0.15, 0, 0, Math.PI * 2);
+    ctx.fillStyle = '#3a2810';
+    ctx.fill();
+    ctx.stroke();
+    // Steam
+    for (let s = 0; s < 2; s++) {
+      ctx.beginPath();
+      ctx.moveTo(px + (s - 0.5) * pw * 0.3, py - ph * 0.55);
+      ctx.bezierCurveTo(
+        px + (s - 0.5) * pw * 0.5, py - ph * 0.8,
+        px + (s - 0.5) * pw * 0.1, py - ph * 1.1,
+        px + (s - 0.5) * pw * 0.3, py - ph * 1.35
+      );
+      ctx.strokeStyle = 'rgba(255,240,200,0.15)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+  pot(W * 0.12, H * 0.45, 54, 42);
+  pot(W * 0.88, H * 0.42, 48, 38);
+  pot(W * 0.2, H * 0.32, 42, 34);
+
+  // Braid of garlic top-right
+  ctx.fillStyle = '#d4c090';
+  for (let i = 0; i < 5; i++) {
+    ctx.beginPath();
+    ctx.ellipse(W * 0.87 + (i % 3 - 1) * 14, H * 0.1 + i * 14, 10, 13, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = '#a08040';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  }
+  ctx.strokeStyle = '#8a6020';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(W * 0.87, H * 0.04);
+  ctx.lineTo(W * 0.87, H * 0.22);
+  ctx.stroke();
+
+  // Shelf with bottles
+  ctx.fillStyle = '#3d2010';
+  ctx.fillRect(W * 0.02, H * 0.28, W * 0.22, 8);
+  function bottle(bx, by) {
+    ctx.beginPath();
+    ctx.roundRect(bx - 7, by - 45, 14, 38, 2);
+    ctx.fillStyle = '#1a3510';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.roundRect(bx - 4, by - 56, 8, 16, 2);
+    ctx.fillStyle = '#0e2010';
+    ctx.fill();
+    ctx.fillStyle = 'rgba(255,220,100,0.6)';
+    ctx.fillRect(bx - 5, by - 38, 10, 12);
+  }
+  bottle(W * 0.06, H * 0.28);
+  bottle(W * 0.11, H * 0.28);
+  bottle(W * 0.16, H * 0.28);
+
+  // Warm vignette
+  const vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.2, W / 2, H / 2, H * 0.85);
+  vig.addColorStop(0, 'rgba(0,0,0,0)');
+  vig.addColorStop(1, 'rgba(10,5,2,0.6)');
+  ctx.fillStyle = vig;
+  ctx.fillRect(0, 0, W, H);
+}
+
+// ============================================================
+//  GALLERIA — 5 scene canvas
+// ============================================================
+function drawGallery() {
+  const scenes = [drawCourtyard, drawPasta, drawWine, drawDiningRoom, drawAntipasto];
+  const fallbacks = [
+    { w: 540, h: 528 },
+    { w: 270, h: 260 },
+    { w: 270, h: 260 },
+    { w: 270, h: 260 },
+    { w: 270, h: 260 },
+  ];
+  const dpr = window.devicePixelRatio || 1;
+  scenes.forEach((fn, i) => {
+    const c = document.getElementById('gc' + i);
+    if (!c) return;
+    const parent = c.parentElement;
+    const rect = parent ? parent.getBoundingClientRect() : { width: 0, height: 0 };
+    const W = rect.width > 10 ? rect.width : fallbacks[i].w;
+    const H = rect.height > 10 ? rect.height : fallbacks[i].h;
+    c.width = Math.round(W * dpr);
+    c.height = Math.round(H * dpr);
+    c.style.width = '100%';
+    c.style.height = '100%';
+    const ctx = c.getContext('2d');
+    ctx.scale(dpr, dpr);
+    fn(ctx, W, H);
+  });
+}
+
+// Scene 0: Courtyard with big oak tree
+function drawCourtyard(ctx, W, H) {
+  // Sky
+  const sky = ctx.createLinearGradient(0, 0, 0, H * 0.55);
+  sky.addColorStop(0, '#4a7ab5');
+  sky.addColorStop(1, '#8cb8e0');
+  ctx.fillStyle = sky; ctx.fillRect(0, 0, W, H);
+
+  // Ground
+  const g = ctx.createLinearGradient(0, H * 0.55, 0, H);
+  g.addColorStop(0, '#c8a868'); g.addColorStop(1, '#a07845');
+  ctx.fillStyle = g; ctx.fillRect(0, H * 0.55, W, H * 0.45);
+
+  // Stone pavement pattern
+  ctx.strokeStyle = 'rgba(150,100,50,0.3)'; ctx.lineWidth = 0.8;
+  for (let y = H * 0.6; y < H; y += 18) {
+    for (let x = -10; x < W + 10; x += 36) {
+      const off = (Math.floor((y - H * 0.6) / 18) % 2) * 18;
+      ctx.strokeRect(x + off, y, 34, 16);
+    }
+  }
+
+  // Tree trunk
+  const tx = W * 0.62, ty = H * 0.55;
+  ctx.fillStyle = '#4a2e10';
+  ctx.beginPath();
+  ctx.moveTo(tx - 18, ty);
+  ctx.bezierCurveTo(tx - 22, ty - 60, tx - 15, ty - 120, tx - 10, ty - 180);
+  ctx.lineTo(tx + 10, ty - 180);
+  ctx.bezierCurveTo(tx + 15, ty - 120, tx + 22, ty - 60, tx + 18, ty);
+  ctx.fill();
+
+  // Foliage clusters
+  function foliage(cx, cy, r, lh, ls, ll) {
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.fillStyle = hsl(lh, ls, ll);
+    ctx.fill();
+  }
+  const clusters = [
+    [tx, ty - 200, 75, 105, 42, 28],
+    [tx - 60, ty - 170, 55, 108, 40, 25],
+    [tx + 65, ty - 165, 60, 103, 44, 30],
+    [tx - 30, ty - 240, 50, 110, 38, 22],
+    [tx + 40, ty - 235, 48, 106, 41, 27],
+    [tx, ty - 260, 42, 112, 36, 20],
+  ];
+  clusters.forEach(d => foliage(...d));
+
+  // Building facade
+  ctx.fillStyle = '#d4b880'; ctx.fillRect(0, H * 0.2, W * 0.45, H * 0.38);
+  ctx.fillStyle = '#c8a860'; ctx.fillRect(W * 0.0, H * 0.19, W * 0.47, 8);
+  // Windows
+  function win(wx, wy) {
+    ctx.fillStyle = '#2a1a08'; ctx.fillRect(wx, wy, 28, 38);
+    ctx.fillStyle = 'rgba(200,160,80,0.4)'; ctx.fillRect(wx + 2, wy + 2, 12, 34);
+    ctx.fillRect(wx + 14, wy + 2, 12, 34);
+    ctx.strokeStyle = '#8a6030'; ctx.lineWidth = 1; ctx.strokeRect(wx, wy, 28, 38);
+  }
+  win(W*0.07, H*0.27); win(W*0.22, H*0.27); win(W*0.07, H*0.42); win(W*0.22, H*0.42);
+
+  // Door
+  ctx.fillStyle = '#3d1f08';
+  ctx.beginPath();
+  ctx.rect(W * 0.14, H * 0.44, 32, 50);
+  ctx.arc(W * 0.14 + 16, H * 0.44, 16, Math.PI, 0);
+  ctx.fill();
+
+  // Tables in courtyard
+  function table(tabx, taby) {
+    ctx.fillStyle = '#8a6030'; ctx.fillRect(tabx - 18, taby - 4, 36, 5);
+    ctx.fillStyle = '#6a4820'; ctx.fillRect(tabx - 14, taby, 4, 22); ctx.fillRect(tabx + 10, taby, 4, 22);
+    ctx.fillStyle = '#f0e8d0';
+    for (let c2 = -1; c2 <= 1; c2++) {
+      ctx.beginPath(); ctx.arc(tabx + c2 * 18, taby - 14, 9, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+  table(W * 0.2, H * 0.72); table(W * 0.38, H * 0.78);
+
+  // Vignette
+  const v = ctx.createRadialGradient(W/2,H/2,H*0.1,W/2,H/2,H*0.9);
+  v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(0,0,0,0.4)');
+  ctx.fillStyle = v; ctx.fillRect(0,0,W,H);
+}
+
+// Scene 1: Pasta fresca — mani che impastano
+function drawPasta(ctx, W, H) {
+  // Warm wooden surface
+  for (let y = 0; y < H; y += 3) {
+    const n = smoothNoise(y * 0.05, 0);
+    const r = 160 + n * 40, g = 100 + n * 30, b = 40 + n * 20;
+    ctx.fillStyle = `rgb(${r|0},${g|0},${b|0})`;
+    ctx.fillRect(0, y, W, 3);
+  }
+  // Wood grain
+  ctx.strokeStyle = 'rgba(120,70,20,0.18)';
+  for (let i = 0; i < 12; i++) {
+    ctx.lineWidth = rnd(0.5, 2);
+    ctx.beginPath();
+    ctx.moveTo(rnd(0, W), 0);
+    ctx.bezierCurveTo(rnd(0,W),H*0.3,rnd(0,W),H*0.6,rnd(0,W),H);
+    ctx.stroke();
+  }
+
+  // Flour dusting
+  ctx.fillStyle = 'rgba(255,252,245,0.6)';
+  for (let i = 0; i < 400; i++) {
+    const fx = rnd(0, W), fy = rnd(H*0.3, H);
+    const fr = rnd(0.5, 2.5);
+    ctx.globalAlpha = rnd(0.1, 0.5);
+    ctx.beginPath(); ctx.arc(fx, fy, fr, 0, Math.PI*2); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+
+  // Pasta sheet (sfoglia)
+  ctx.save();
+  ctx.translate(W*0.5, H*0.58);
+  ctx.rotate(-0.15);
+  ctx.fillStyle = '#f0d878';
+  ctx.beginPath();
+  ctx.ellipse(0, 0, W*0.42, H*0.22, 0, 0, Math.PI*2);
+  ctx.fill();
+  ctx.strokeStyle = '#c8a840'; ctx.lineWidth = 1.5; ctx.stroke();
+  // Pasta texture
+  ctx.strokeStyle = 'rgba(180,140,40,0.3)';
+  for (let li = -W*0.35; li < W*0.35; li += 8) {
+    ctx.lineWidth = 0.5;
+    ctx.beginPath(); ctx.moveTo(li, -H*0.22); ctx.lineTo(li, H*0.22); ctx.stroke();
+  }
+  ctx.restore();
+
+  // Rolling pin
+  ctx.save();
+  ctx.translate(W * 0.5, H * 0.3);
+  ctx.rotate(0.2);
+  ctx.fillStyle = '#8a5c28';
+  ctx.beginPath();
+  ctx.roundRect(-W * 0.44, -14, W * 0.88, 28, 14);
+  ctx.fill();
+  ctx.fillStyle = '#a06c38';
+  ctx.fillRect(-W*0.38, -12, W*0.76, 24);
+  ctx.strokeStyle = '#6a3c18'; ctx.lineWidth = 1; ctx.strokeRect(-W*0.38, -12, W*0.76, 24);
+  ctx.restore();
+
+  // Hands
+  function hand(hx, hy, rot, flip) {
+    ctx.save();
+    ctx.translate(hx, hy);
+    ctx.rotate(rot);
+    ctx.scale(flip, 1);
+    ctx.fillStyle = '#d4956a';
+    // Palm
+    ctx.beginPath();
+    ctx.ellipse(0, 0, 22, 32, 0, 0, Math.PI*2);
+    ctx.fill();
+    // Fingers
+    const fingers = [[-14,-28,5,20,-0.3],[-5,-32,5,22,-0.08],[5,-32,5,22,0.08],[14,-28,5,20,0.3]];
+    fingers.forEach(([fx,fy,fw,fh,fr]) => {
+      ctx.save(); ctx.translate(fx,fy); ctx.rotate(fr);
+      ctx.beginPath(); ctx.ellipse(0,0,fw,fh,0,0,Math.PI*2);
+      ctx.fillStyle = '#d08060'; ctx.fill(); ctx.restore();
+    });
+    ctx.restore();
+  }
+  hand(W*0.28, H*0.55, -0.3, 1);
+  hand(W*0.72, H*0.5, 0.3, -1);
+
+  // Cut tagliatelle ribbons
+  ctx.save();
+  ctx.translate(W*0.5, H*0.82);
+  for (let ri = -5; ri <= 5; ri++) {
+    ctx.save();
+    ctx.rotate(rnd(-0.4, 0.4));
+    ctx.strokeStyle = '#e8c840';
+    ctx.lineWidth = 4;
+    ctx.globalAlpha = 0.7;
+    ctx.beginPath();
+    ctx.moveTo(ri * 10 - W*0.2, -H*0.08);
+    ctx.bezierCurveTo(ri*10 - W*0.1, 0, ri*10 + W*0.05, 0, ri*10 + W*0.2, H*0.07);
+    ctx.stroke();
+    ctx.restore();
+  }
+  ctx.globalAlpha = 1;
+  ctx.restore();
+}
+
+// Scene 2: Vini — cantina con botti
+function drawWine(ctx, W, H) {
+  // Stone wall bg
+  for (let y = 0; y < H; y += 3) {
+    const n = smoothNoise(y * 0.08, 0);
+    const v = 22 + n * 12;
+    ctx.fillStyle = `rgb(${v+10},${v+6},${v})`;
+    ctx.fillRect(0, y, W, 3);
+  }
+
+  // Wine bottles row
+  function wineBottle(bx, by, col) {
+    ctx.fillStyle = col;
+    ctx.beginPath(); ctx.roundRect(bx - 9, by - 58, 18, 44, 3); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(bx - 5, by - 72, 10, 18, 3); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(bx - 5.5, by - 80, 11, 10, 2); ctx.fill();
+    ctx.fillStyle = '#1a0a04';
+    ctx.beginPath(); ctx.roundRect(bx - 5, by - 82, 10, 5, 1); ctx.fill();
+    // Label
+    ctx.fillStyle = 'rgba(240,225,190,0.85)';
+    ctx.fillRect(bx - 7, by - 50, 14, 20);
+    ctx.fillStyle = col; ctx.font = 'bold 5px serif';
+    ctx.textAlign = 'center'; ctx.fillText('1978', bx, by - 36);
+  }
+
+  const bottleColors = ['#1a3a10','#2a1a08','#1a2a38','#0e2810','#1e1408'];
+  for (let i = 0; i < 5; i++) wineBottle(W * (0.12 + i * 0.18), H * 0.35, bottleColors[i]);
+
+  // Wooden barrel
+  function barrel(barx, bary, bw, bh) {
+    // Body
+    const bg = ctx.createLinearGradient(barx - bw/2, 0, barx + bw/2, 0);
+    bg.addColorStop(0, '#3a1e08');
+    bg.addColorStop(0.3, '#6a3a18');
+    bg.addColorStop(0.7, '#5a3010');
+    bg.addColorStop(1, '#2e1606');
+    ctx.fillStyle = bg;
+    ctx.beginPath();
+    ctx.moveTo(barx - bw*0.35, bary - bh/2);
+    ctx.bezierCurveTo(barx - bw/2, bary - bh/2, barx - bw/2, bary + bh/2, barx - bw*0.35, bary + bh/2);
+    ctx.lineTo(barx + bw*0.35, bary + bh/2);
+    ctx.bezierCurveTo(barx + bw/2, bary + bh/2, barx + bw/2, bary - bh/2, barx + bw*0.35, bary - bh/2);
+    ctx.closePath();
+    ctx.fill();
+    // Hoops
+    ['#8a6030','#7a5020','#8a6030'].forEach((hc, hi) => {
+      ctx.strokeStyle = hc; ctx.lineWidth = 3;
+      const hy = bary - bh/2 + bh * [0.18, 0.5, 0.82][hi];
+      const hw = bw * (hi === 1 ? 0.5 : 0.42);
+      ctx.beginPath();
+      ctx.ellipse(barx, hy, hw, bh * 0.07, 0, 0, Math.PI * 2);
+      ctx.stroke();
+    });
+    // End caps
+    ctx.fillStyle = '#4a2810';
+    ctx.beginPath(); ctx.ellipse(barx, bary - bh/2, bw*0.35, bh*0.1, 0, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(barx, bary + bh/2, bw*0.35, bh*0.1, 0, 0, Math.PI*2); ctx.fill();
+  }
+
+  barrel(W * 0.2, H * 0.72, 70, 90);
+  barrel(W * 0.5, H * 0.76, 90, 110);
+  barrel(W * 0.82, H * 0.74, 75, 95);
+
+  // Shelf
+  ctx.fillStyle = '#4a2e10';
+  ctx.fillRect(0, H * 0.18, W, 8);
+
+  // Hanging bunch of grapes
+  function grape(gx, gy) {
+    const positions = [[0,0],[10,12],[-10,12],[0,24],[10,36],[-10,36],[0,48]];
+    positions.forEach(([dx,dy]) => {
+      ctx.beginPath(); ctx.arc(gx+dx, gy+dy, 7, 0, Math.PI*2);
+      ctx.fillStyle = '#4a1a5a'; ctx.fill();
+      ctx.strokeStyle = '#6a2a7a'; ctx.lineWidth = 0.5; ctx.stroke();
+    });
+    ctx.strokeStyle = '#5a3818'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(gx, gy - 15); ctx.lineTo(gx, gy); ctx.stroke();
+    // Leaves
+    ctx.fillStyle = '#3a6020';
+    ctx.beginPath(); ctx.ellipse(gx - 12, gy - 10, 10, 7, -0.5, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(gx + 12, gy - 10, 10, 7, 0.5, 0, Math.PI*2); ctx.fill();
+  }
+  grape(W * 0.72, H * 0.06);
+  grape(W * 0.35, H * 0.06);
+
+  // Vignette
+  const v = ctx.createRadialGradient(W/2,H/2,H*0.05,W/2,H/2,H*0.85);
+  v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(0,0,0,0.55)');
+  ctx.fillStyle = v; ctx.fillRect(0,0,W,H);
+}
+
+// Scene 3: Sala interna — tavoli apparecchiati
+function drawDiningRoom(ctx, W, H) {
+  // Floor — terracotta tiles
+  for (let row = 0; row * 28 < H; row++) {
+    for (let col = 0; col * 28 < W; col++) {
+      const n = smoothNoise(col * 0.6 + row * 0.3, row * 0.4);
+      const r = 155 + n * 30, g = 80 + n * 20, b = 38 + n * 15;
+      ctx.fillStyle = `rgb(${r|0},${g|0},${b|0})`;
+      ctx.fillRect(col * 28, row * 28, 27, 27);
+      ctx.strokeStyle = 'rgba(100,50,20,0.3)';
+      ctx.lineWidth = 0.5;
+      ctx.strokeRect(col * 28, row * 28, 27, 27);
+    }
+  }
+
+  // Wall
+  ctx.fillStyle = '#e8d8b8';
+  ctx.fillRect(0, 0, W, H * 0.35);
+  ctx.strokeStyle = '#c8b898'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, H*0.35); ctx.lineTo(W, H*0.35); ctx.stroke();
+
+  // Wainscoting
+  ctx.fillStyle = '#8a5c28';
+  ctx.fillRect(0, H*0.3, W, H*0.06);
+  for (let wp = 0; wp < W; wp += 40) {
+    ctx.strokeStyle = '#6a4018'; ctx.lineWidth = 0.5;
+    ctx.strokeRect(wp + 3, H*0.31, 34, H*0.04);
+  }
+
+  // Picture frame
+  function frame(pfx, pfy, pfw, pfh) {
+    ctx.strokeStyle = '#8a6030'; ctx.lineWidth = 4;
+    ctx.strokeRect(pfx, pfy, pfw, pfh);
+    ctx.strokeStyle = '#c8a848'; ctx.lineWidth = 1.5;
+    ctx.strokeRect(pfx+4, pfy+4, pfw-8, pfh-8);
+    // Simple landscape inside
+    const innerGrad = ctx.createLinearGradient(pfx+6, pfy+6, pfx+6, pfy+pfh-6);
+    innerGrad.addColorStop(0, '#8abde0'); innerGrad.addColorStop(0.6, '#5c8ab0');
+    ctx.fillStyle = innerGrad; ctx.fillRect(pfx+6, pfy+6, pfw-12, pfh-12);
+    ctx.fillStyle = '#3a6820'; ctx.fillRect(pfx+6, pfy+pfh*0.55, pfw-12, pfh*0.4);
+  }
+  frame(W*0.1, H*0.04, 80, 55);
+  frame(W*0.42, H*0.04, 70, 50);
+  frame(W*0.72, H*0.04, 75, 52);
+
+  // Table with tablecloth
+  function diningTable(dtx, dty, dtw, dth) {
+    // Table surface
+    ctx.fillStyle = '#f5f0e0';
+    ctx.beginPath(); ctx.ellipse(dtx, dty, dtw, dth, 0, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#d8c8a0'; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Plates
+    const places = [[-dtw*0.55, 0],[dtw*0.55, 0],[0, -dth*0.75],[0, dth*0.75]];
+    places.forEach(([px, py]) => {
+      if (Math.abs(px) > dtw || Math.abs(py) > dth) return;
+      ctx.beginPath(); ctx.arc(dtx+px, dty+py, 14, 0, Math.PI*2);
+      ctx.fillStyle = '#f8f5ee'; ctx.fill();
+      ctx.strokeStyle = '#e0d0b0'; ctx.lineWidth = 1; ctx.stroke();
+      // Plate ring
+      ctx.beginPath(); ctx.arc(dtx+px, dty+py, 10, 0, Math.PI*2);
+      ctx.strokeStyle = '#d0c090'; ctx.lineWidth = 0.5; ctx.stroke();
+      // Glass
+      ctx.beginPath(); ctx.arc(dtx+px+18, dty+py-12, 5, 0, Math.PI*2);
+      ctx.strokeStyle = 'rgba(180,200,220,0.7)'; ctx.lineWidth = 0.8; ctx.stroke();
+    });
+
+    // Candle centerpiece
+    ctx.fillStyle = '#e8e0c8'; ctx.fillRect(dtx-3, dty-22, 6, 16);
+    ctx.fillStyle = '#f5d040';
+    ctx.beginPath(); ctx.arc(dtx, dty-25, 4, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'rgba(255,180,30,0.5)';
+    ctx.beginPath(); ctx.arc(dtx, dty-28, 6, 0, Math.PI*2); ctx.fill();
+
+    // Flower vase
+    ctx.fillStyle = '#8ab0c0';
+    ctx.beginPath(); ctx.roundRect(dtx-5+dtw*0.25, dty-18, 10, 16, 2); ctx.fill();
+    ctx.fillStyle = '#e86070';
+    for (let fi = 0; fi < 3; fi++) {
+      ctx.beginPath(); ctx.arc(dtx+dtw*0.25+(fi-1)*8, dty-22, 5, 0, Math.PI*2); ctx.fill();
+    }
+  }
+
+  diningTable(W*0.25, H*0.65, 70, 35);
+  diningTable(W*0.72, H*0.7, 75, 38);
+
+  // Table legs
+  function tableLegs(lx, ly) {
+    ctx.strokeStyle = '#6a4020'; ctx.lineWidth = 3;
+    [[-20,-10],[20,-10],[-20,10],[20,10]].forEach(([dx,dy]) => {
+      ctx.beginPath(); ctx.moveTo(lx+dx, ly+dy); ctx.lineTo(lx+dx*1.2, ly+50); ctx.stroke();
+    });
+  }
+  tableLegs(W*0.25, H*0.68); tableLegs(W*0.72, H*0.73);
+
+  // Warm light patches (ceiling light effect)
+  [W*0.25, W*0.72].forEach(lx => {
+    const patch = ctx.createRadialGradient(lx, H*0.55, 5, lx, H*0.65, W*0.28);
+    patch.addColorStop(0, 'rgba(255,220,130,0.22)');
+    patch.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = patch; ctx.fillRect(0, 0, W, H);
+  });
+
+  // Vignette
+  const v = ctx.createRadialGradient(W/2,H/2,H*0.15,W/2,H/2,H*0.9);
+  v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(0,0,0,0.45)');
+  ctx.fillStyle = v; ctx.fillRect(0,0,W,H);
+}
+
+// Scene 4: Antipasto — tagliere rustico
+function drawAntipasto(ctx, W, H) {
+  // Dark wooden table
+  for (let y = 0; y < H; y += 4) {
+    const n = smoothNoise(y * 0.06, 0);
+    const r = 55 + n * 20, g = 32 + n * 12, b = 12 + n * 8;
+    ctx.fillStyle = `rgb(${r|0},${g|0},${b|0})`;
+    ctx.fillRect(0, y, W, 4);
+  }
+  // Grain lines
+  ctx.strokeStyle = 'rgba(80,40,10,0.25)';
+  for (let i = 0; i < 8; i++) {
+    ctx.lineWidth = rnd(0.5, 2);
+    ctx.beginPath();
+    ctx.moveTo(rnd(0,W), 0); ctx.lineTo(rnd(0,W), H); ctx.stroke();
+  }
+
+  // Wooden board (tagliere)
+  ctx.save();
+  ctx.translate(W*0.5, H*0.52);
+  ctx.rotate(0.05);
+  const bgrad = ctx.createLinearGradient(-W*0.42, 0, W*0.42, 0);
+  bgrad.addColorStop(0, '#8a5a28'); bgrad.addColorStop(0.4, '#c8904c'); bgrad.addColorStop(1, '#8a5a28');
+  ctx.fillStyle = bgrad;
+  ctx.beginPath(); ctx.roundRect(-W*0.42, -H*0.35, W*0.84, H*0.7, 8); ctx.fill();
+  // Board grain
+  ctx.strokeStyle = 'rgba(140,90,30,0.25)';
+  for (let i = 0; i < 6; i++) {
+    ctx.lineWidth = rnd(0.5, 1.5);
+    ctx.beginPath();
+    ctx.moveTo(rnd(-W*0.4, W*0.4), -H*0.35);
+    ctx.lineTo(rnd(-W*0.4, W*0.4), H*0.35);
+    ctx.stroke();
+  }
+  // Board handle
+  ctx.fillStyle = '#a07030';
+  ctx.beginPath(); ctx.roundRect(W*0.38, -12, W*0.12, 24, 10); ctx.fill();
+  ctx.restore();
+
+  // Prosciutto folds
+  function prosciutto(px, py) {
+    for (let i = 0; i < 4; i++) {
+      ctx.save(); ctx.translate(px + i*8, py);
+      ctx.fillStyle = `rgba(${180+i*8},${80+i*5},${70+i*5},0.9)`;
+      ctx.beginPath();
+      ctx.moveTo(-15, 0);
+      ctx.bezierCurveTo(-20, -15, 5, -25, 15, -10);
+      ctx.bezierCurveTo(20, 0, 10, 15, -15, 10);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+  prosciutto(W*0.2, H*0.45);
+  prosciutto(W*0.2, H*0.6);
+
+  // Cheese wedge
+  ctx.save(); ctx.translate(W*0.55, H*0.48);
+  ctx.rotate(0.3);
+  ctx.fillStyle = '#e8c860';
+  ctx.beginPath();
+  ctx.moveTo(0, 0); ctx.lineTo(45, -20); ctx.lineTo(50, 20); ctx.lineTo(5, 38); ctx.closePath(); ctx.fill();
+  ctx.strokeStyle = '#c8a840'; ctx.lineWidth = 1; ctx.stroke();
+  // Cheese holes
+  ctx.fillStyle = 'rgba(180,140,40,0.5)';
+  [[20,-5],[32,10],[15,20]].forEach(([hx,hy]) => { ctx.beginPath(); ctx.arc(hx,hy,4,0,Math.PI*2); ctx.fill(); });
+  ctx.restore();
+
+  // Olives
+  [W*0.38,W*0.43,W*0.48,W*0.35].forEach((ox, i) => {
+    ctx.fillStyle = i%2===0 ? '#2a3a10' : '#1a1a1a';
+    ctx.beginPath(); ctx.ellipse(ox, H*0.65 + (i%2)*12, 8, 11, 0.3, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#e86020';
+    ctx.beginPath(); ctx.arc(ox, H*0.65 + (i%2)*12, 2, 0, Math.PI*2); ctx.fill();
+  });
+
+  // Breadsticks (grissini)
+  ctx.save(); ctx.translate(W*0.72, H*0.4);
+  for (let gs = 0; gs < 5; gs++) {
+    ctx.save(); ctx.rotate(-0.4 + gs * 0.08);
+    ctx.fillStyle = '#d4a840';
+    ctx.fillRect(-3, -H*0.3, 6, H*0.6);
+    // Sesame seeds
+    ctx.fillStyle = '#e8c870';
+    for (let ss = 0; ss < 8; ss++) {
+      ctx.beginPath(); ctx.arc(rnd(-2,2), rnd(-H*0.25, H*0.25), 1.2, 0, Math.PI*2); ctx.fill();
+    }
+    ctx.restore();
+    ctx.translate(9, 0);
+  }
+  ctx.restore();
+
+  // Cherry tomatoes
+  [W*0.3, W*0.25, W*0.32].forEach((tx, i) => {
+    const tg = ctx.createRadialGradient(tx-3, H*0.35 + i*14 - 3, 1, tx, H*0.35 + i*14, 9);
+    tg.addColorStop(0,'#ff9060'); tg.addColorStop(0.6,'#e03020'); tg.addColorStop(1,'#9a1a08');
+    ctx.fillStyle = tg;
+    ctx.beginPath(); ctx.arc(tx, H*0.35 + i*14, 9, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#3a7020';
+    ctx.beginPath(); ctx.moveTo(tx, H*0.35+i*14-9); ctx.bezierCurveTo(tx+3,H*0.35+i*14-15,tx+7,H*0.35+i*14-12,tx+6,H*0.35+i*14-8); ctx.fill();
+  });
+
+  // Vignette
+  const v = ctx.createRadialGradient(W/2,H/2,H*0.1,W/2,H/2,H*0.9);
+  v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(0,0,0,0.5)');
+  ctx.fillStyle = v; ctx.fillRect(0,0,W,H);
+}
+
+// ============================================================
+//  MAPPA — Illustrazione di Siena stilizzata
+// ============================================================
+function drawMap() {
+  const canvas = document.getElementById('map-canvas');
+  if (!canvas) return;
+  const dpr = window.devicePixelRatio || 1;
+  const W = 680, H = 360;
+  canvas.width = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  canvas.style.width = '100%'; canvas.style.height = H + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // Map background (aerial view)
+  ctx.fillStyle = '#1e1408'; ctx.fillRect(0, 0, W, H);
+
+  // Ground texture
+  for (let y = 0; y < H; y += 3) {
+    for (let x = 0; x < W; x += 3) {
+      const n = smoothNoise(x * 0.1, y * 0.1);
+      const v = 28 + n * 15;
+      ctx.fillStyle = `rgb(${v+12},${v+8},${v})`;
+      ctx.fillRect(x, y, 3, 3);
+    }
+  }
+
+  // Streets
+  ctx.strokeStyle = '#3a2a18'; ctx.lineWidth = 8; ctx.lineCap = 'round';
+  const streets = [
+    [[W*0.1,H*0.5],[W*0.9,H*0.5]],
+    [[W*0.5,H*0.1],[W*0.5,H*0.9]],
+    [[W*0.2,H*0.2],[W*0.8,H*0.8]],
+    [[W*0.8,H*0.2],[W*0.2,H*0.8]],
+    [[W*0.15,H*0.7],[W*0.85,H*0.3]],
+    [[W*0.3,H*0.1],[W*0.1,H*0.85]],
+    [[W*0.7,H*0.1],[W*0.9,H*0.7]],
+  ];
+  streets.forEach(([[x1,y1],[x2,y2]]) => {
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+  });
+  ctx.strokeStyle = '#4a3a20'; ctx.lineWidth = 4;
+  streets.forEach(([[x1,y1],[x2,y2]]) => {
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke();
+  });
+
+  // City blocks (buildings)
+  const blocks = [
+    [W*0.12,H*0.12,50,40],[W*0.22,H*0.12,45,35],[W*0.55,H*0.12,48,38],
+    [W*0.68,H*0.12,52,42],[W*0.12,H*0.28,44,36],[W*0.78,H*0.28,40,38],
+    [W*0.12,H*0.55,42,35],[W*0.22,H*0.65,50,38],[W*0.55,H*0.6,45,40],
+    [W*0.68,H*0.55,48,42],[W*0.78,H*0.65,42,36],[W*0.3,H*0.35,38,30],
+    [W*0.6,H*0.35,40,32],[W*0.42,H*0.18,35,28],[W*0.42,H*0.62,38,30],
+  ];
+  blocks.forEach(([bx,by,bw,bh]) => {
+    const n = smoothNoise(bx*0.02, by*0.02);
+    const r = 55+n*25, g = 38+n*18, b = 18+n*12;
+    ctx.fillStyle = `rgb(${r|0},${g|0},${b|0})`;
+    ctx.fillRect(bx, by, bw, bh);
+    ctx.strokeStyle = `rgb(${(r+20)|0},${(g+12)|0},${(b+5)|0})`;
+    ctx.lineWidth = 0.8; ctx.strokeRect(bx, by, bw, bh);
+  });
+
+  // Piazza del Campo (fan-shaped)
+  ctx.fillStyle = '#5a4028';
+  ctx.beginPath(); ctx.arc(W*0.5, H*0.5, 38, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = '#7a5838';
+  for (let an = 0; an < 9; an++) {
+    const a = (an / 9) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.moveTo(W*0.5, H*0.5);
+    ctx.lineTo(W*0.5 + Math.cos(a)*36, H*0.5 + Math.sin(a)*36);
+    ctx.arc(W*0.5, H*0.5, 36, a, a + Math.PI*2/9);
+    if (an % 2 === 0) ctx.fill();
+  }
+  ctx.strokeStyle = '#8a6840'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(W*0.5, H*0.5, 38, 0, Math.PI*2); ctx.stroke();
+
+  // Cathedral (Duomo)
+  ctx.fillStyle = '#e8d8b8';
+  ctx.fillRect(W*0.38, H*0.24, 22, 28);
+  ctx.fillStyle = '#d4c0a0';
+  ctx.beginPath(); ctx.moveTo(W*0.36, H*0.24); ctx.lineTo(W*0.49, H*0.18); ctx.lineTo(W*0.62, H*0.24); ctx.closePath(); ctx.fill();
+  // Towers
+  ctx.fillStyle = '#8a6840';
+  ctx.fillRect(W*0.36, H*0.18, 10, 14); ctx.fillRect(W*0.52, H*0.18, 10, 14);
+
+  // Green parks
+  const parks = [[W*0.08,H*0.08,28,22],[W*0.75,H*0.08,24,20],[W*0.08,H*0.75,22,18],[W*0.78,H*0.74,25,18]];
+  parks.forEach(([px,py,pw,ph]) => {
+    ctx.fillStyle = '#2a4a18'; ctx.fillRect(px,py,pw,ph);
+    ctx.fillStyle = '#3a5a20'; 
+    for (let ti = 0; ti < 3; ti++) {
+      ctx.beginPath(); ctx.arc(px+pw*0.25+ti*pw*0.25, py+ph*0.5, 5, 0, Math.PI*2); ctx.fill();
+    }
+  });
+
+  // OUR RESTAURANT — pin marker
+  const pinX = W*0.34, pinY = H*0.42;
+  // Pulsing circle
+  ctx.fillStyle = 'rgba(184,92,56,0.25)';
+  ctx.beginPath(); ctx.arc(pinX, pinY, 22, 0, Math.PI*2); ctx.fill();
+  ctx.fillStyle = 'rgba(184,92,56,0.5)';
+  ctx.beginPath(); ctx.arc(pinX, pinY, 14, 0, Math.PI*2); ctx.fill();
+  // Pin
+  ctx.fillStyle = '#b85c38';
+  ctx.beginPath();
+  ctx.arc(pinX, pinY - 12, 10, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(pinX - 7, pinY - 12);
+  ctx.lineTo(pinX, pinY + 5);
+  ctx.lineTo(pinX + 7, pinY - 12);
+  ctx.fill();
+  ctx.fillStyle = '#fff';
+  ctx.beginPath(); ctx.arc(pinX, pinY - 13, 4, 0, Math.PI*2); ctx.fill();
+
+  // Label
+  ctx.fillStyle = 'rgba(42,26,14,0.85)';
+  ctx.beginPath(); ctx.roundRect(pinX - 52, pinY + 10, 104, 26, 4); ctx.fill();
+  ctx.fillStyle = '#f5e8d0';
+  ctx.font = '500 10px "Crimson Text", serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Osteria della Quercia', pinX, pinY + 26);
+
+  // Compass rose
+  const cx = W*0.88, cy = H*0.12, cr = 18;
+  ctx.fillStyle = 'rgba(42,26,14,0.7)';
+  ctx.beginPath(); ctx.arc(cx, cy, cr, 0, Math.PI*2); ctx.fill();
+  ctx.strokeStyle = '#c8a848'; ctx.lineWidth = 0.5;
+  ctx.beginPath(); ctx.arc(cx, cy, cr, 0, Math.PI*2); ctx.stroke();
+  const dirs = [['N',0],['E',90],['S',180],['W',270]];
+  dirs.forEach(([d,a]) => {
+    const rad = (a - 90) * Math.PI / 180;
+    ctx.fillStyle = d === 'N' ? '#e85c38' : '#c8a848';
+    ctx.font = `bold 8px sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText(d, cx + Math.cos(rad)*(cr-6), cy + Math.sin(rad)*(cr-6) + 3);
+  });
+  ctx.strokeStyle = '#c8a848'; ctx.lineWidth = 0.8;
+  ctx.beginPath(); ctx.moveTo(cx, cy-cr+4); ctx.lineTo(cx, cy+cr-4); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx-cr+4, cy); ctx.lineTo(cx+cr-4, cy); ctx.stroke();
+
+  // Overall vignette
+  const v = ctx.createRadialGradient(W/2,H/2,H*0.15,W/2,H/2,H*0.9);
+  v.addColorStop(0,'rgba(0,0,0,0)'); v.addColorStop(1,'rgba(0,0,0,0.5)');
+  ctx.fillStyle = v; ctx.fillRect(0,0,W,H);
+}
+
+// ============================================================
+//  SCROLL REVEAL
+// ============================================================
+function initReveal() {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(el => io.observe(el));
+}
+
+// ============================================================
+//  MENU TABS
+// ============================================================
+function initTabs() {
+  document.querySelectorAll('.menu-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+}
+
+// ============================================================
+//  RESERVATION FORM
+// ============================================================
+function initForm() {
+  document.getElementById('res-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.querySelector('button[type=submit]').textContent = 'Richiesta inviata ✓';
+    this.querySelector('button[type=submit]').style.background = 'var(--olive)';
+    document.getElementById('confirm-msg').style.display = 'block';
+  });
+}
+
+// ============================================================
+//  MOBILE MENU
+// ============================================================
+function initMobileMenu() {
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (!toggle || !menu) return;
+  function close() {
+    toggle.classList.remove('open');
+    menu.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  toggle.addEventListener('click', () => {
+    const open = !menu.classList.contains('open');
+    toggle.classList.toggle('open', open);
+    menu.classList.toggle('open', open);
+    document.body.classList.toggle('menu-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  window.addEventListener('resize', () => { if (window.innerWidth > 768) close(); });
+}
+
+// ============================================================
+//  INIT
+// ============================================================
+window.addEventListener('load', () => {
+  drawHero();
+  initReveal();
+  initTabs();
+  initForm();
+  initMobileMenu();
+
+  // Double rAF: garantisce layout e paint completati
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      drawStoria();
+      drawGallery();
+      drawMap();
+    });
+  });
+
+  // Fallback: ridisegna gallery quando entra nel viewport (alcune celle potrebbero avere dimensioni 0 se fuori schermo)
+  const gallerySection = document.getElementById('galleria');
+  if (gallerySection && 'IntersectionObserver' in window) {
+    let galleryDrawn = false;
+    const gObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !galleryDrawn) {
+          galleryDrawn = true;
+          requestAnimationFrame(() => drawGallery());
+        }
+      });
+    }, { threshold: 0.05 });
+    gObs.observe(gallerySection);
+  }
+
+  // Resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    drawHero();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      drawStoria();
+      drawGallery();
+      drawMap();
+    }, 200);
+  });
+});
+</script>
+</body>
+</html>

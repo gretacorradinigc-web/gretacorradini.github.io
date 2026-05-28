@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marchetti & Associati — Studio Legale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d1b2a;--navy-mid:#1a2e42;--navy-light:#253d56;
+  --gold:#b8965a;--gold-light:#d4b07a;--gold-pale:#f0e4cc;
+  --cream:#f8f5ef;--cream-dark:#ede8de;--white:#ffffff;
+  --text-dark:#0d1b2a;--text-mid:#3a4a5c;--text-muted:#6e7f8e;
+  --border:rgba(184,150,90,0.25);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Jost',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:300;background:var(--cream);color:var(--text-dark);font-size:16px;line-height:1.7}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,60px);height:72px;background:rgba(13,27,42,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,150,90,0.2)}
+.nav-logo{font-family:var(--serif);font-size:clamp(16px,2vw,20px);font-weight:500;color:var(--white);letter-spacing:0.02em;text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:clamp(16px,3vw,40px);list-style:none}
+.nav-links a{font-size:11px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold-light)}
+.nav-cta{font-size:11px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:9px 20px;text-decoration:none;transition:all 0.25s;white-space:nowrap}
+.nav-cta:hover{background:var(--gold);color:var(--navy)}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:30px;height:30px;background:none;border:none;cursor:pointer;padding:0;z-index:120;flex-shrink:0}
+.nav-toggle span{display:block;height:2px;width:100%;background:var(--gold-light);transition:transform 0.3s,opacity 0.3s}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;z-index:90;background:rgba(13,27,42,0.98);backdrop-filter:blur(12px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:80px 24px 40px;list-style:none;opacity:0;visibility:hidden;transform:translateY(-12px);transition:opacity 0.35s,transform 0.35s,visibility 0.35s}
+.mobile-menu.open{opacity:1;visibility:visible;transform:translateY(0)}
+.mobile-menu a{font-family:var(--serif);font-size:26px;font-weight:400;color:var(--white);text-decoration:none;letter-spacing:0.02em;transition:color 0.2s}
+.mobile-menu a:hover{color:var(--gold-light)}
+.mobile-menu .nav-cta{font-family:var(--sans);font-size:12px;margin-top:12px}
+body.menu-open{overflow:hidden}
+@media(max-width:768px){.nav-links{display:none}.nav-cta{display:none}.nav-toggle{display:flex}}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--navy);display:flex;align-items:center;position:relative;overflow:hidden;padding:100px clamp(20px,5vw,60px) clamp(120px,14vw,160px)}
+.hero-bg-lines{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(184,150,90,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(184,150,90,0.04) 1px,transparent 1px);background-size:80px 80px}
+.hero-accent{position:absolute;top:0;right:0;width:42%;height:100%;background:linear-gradient(135deg,transparent 0%,rgba(184,150,90,0.05) 100%);border-left:1px solid rgba(184,150,90,0.1)}
+.hero-canvas-wrap{position:absolute;top:0;right:0;width:42%;height:100%;overflow:hidden}
+#heroCanvas{width:100%;height:100%;display:block}
+.hero-content{position:relative;z-index:2;max-width:680px;width:100%}
+.hero-label{font-size:11px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:32px;display:flex;align-items:center;gap:16px}
+.hero-label::before{content:'';display:block;width:40px;height:1px;background:var(--gold)}
+.hero h1{font-family:var(--serif);font-size:clamp(40px,7vw,88px);font-weight:300;line-height:1.0;color:var(--white);margin-bottom:40px;letter-spacing:-0.01em}
+.hero h1 em{font-style:italic;color:var(--gold-light)}
+.hero-desc{font-size:clamp(14px,1.5vw,16px);font-weight:300;color:rgba(255,255,255,0.6);max-width:480px;line-height:1.8;margin-bottom:48px}
+.hero-actions{display:flex;align-items:center;gap:clamp(16px,3vw,40px);flex-wrap:wrap;margin-bottom:0}
+.btn-primary{display:inline-block;font-size:11px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;background:var(--gold);color:var(--navy);padding:16px clamp(20px,3vw,36px);text-decoration:none;transition:all 0.25s}
+.btn-primary:hover{background:var(--gold-light)}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s}
+.btn-ghost:hover{color:var(--gold-light)}
+.btn-ghost svg{width:18px;height:18px;flex-shrink:0}
+/* Stats — absolute on desktop (bottom-right), in-flow on mobile (below actions) */
+.hero-stats{position:absolute;bottom:clamp(30px,4vw,60px);right:clamp(20px,5vw,60px);display:flex;gap:clamp(24px,4vw,48px);z-index:2}
+.hero-stat .num{font-family:var(--serif);font-size:clamp(28px,4vw,42px);font-weight:300;color:var(--white);line-height:1}
+.hero-stat .num span{color:var(--gold);font-size:0.65em}
+.hero-stat .lbl{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:6px}
+/* from 1024px down: canvas background, stats go below the CTA buttons */
+@media(max-width:1024px){
+  .hero{padding-bottom:clamp(60px,8vw,100px)}
+  .hero-canvas-wrap{width:100%;opacity:0.15}
+  .hero-accent{display:none}
+  .hero-stats{position:static;margin-top:56px;justify-content:flex-start;border-top:1px solid rgba(184,150,90,0.18);padding-top:32px}
+}
+
+/* SECTIONS */
+section{padding:clamp(60px,8vw,120px) clamp(20px,5vw,60px)}
+.section-label{font-size:10px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.section-label::before{content:'';display:block;width:28px;height:1px;background:var(--gold)}
+.section-title{font-family:var(--serif);font-size:clamp(32px,4vw,56px);font-weight:300;line-height:1.1;color:var(--text-dark);letter-spacing:-0.01em}
+.section-title em{font-style:italic;color:var(--navy-mid)}
+
+/* MANIFESTO */
+.manifesto{background:var(--navy);color:var(--white);display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:center}
+.manifesto .section-title{color:var(--white)}
+.manifesto .section-title em{color:var(--gold-light)}
+.manifesto-right p{font-size:clamp(14px,1.5vw,17px);font-weight:300;color:rgba(255,255,255,0.65);line-height:1.9;margin-bottom:24px}
+.manifesto-right blockquote{border-left:2px solid var(--gold);padding-left:28px;margin:40px 0;font-family:var(--serif);font-size:clamp(18px,2vw,22px);font-style:italic;font-weight:300;color:rgba(255,255,255,0.85);line-height:1.5}
+.manifesto-values{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.manifesto-value .vnum{font-family:var(--serif);font-size:11px;color:var(--gold);letter-spacing:0.1em;margin-bottom:8px}
+.manifesto-value .vtitle{font-size:13px;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.9);margin-bottom:8px}
+.manifesto-value .vdesc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7}
+@media(max-width:768px){.manifesto{grid-template-columns:1fr}}
+
+/* STATS */
+.stats{background:var(--cream-dark);padding:clamp(60px,8vw,80px) clamp(20px,5vw,60px)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:64px;background:var(--border)}
+.stat-card{background:var(--cream);padding:clamp(28px,4vw,48px) clamp(20px,3vw,40px);position:relative}
+.stat-card::after{content:attr(data-index);position:absolute;top:24px;right:28px;font-family:var(--serif);font-size:11px;color:rgba(184,150,90,0.4);letter-spacing:0.1em}
+.stat-num{font-family:var(--serif);font-size:clamp(40px,5vw,64px);font-weight:300;color:var(--navy);line-height:1;margin-bottom:12px}
+.stat-num sup{font-size:0.45em;color:var(--gold);vertical-align:super}
+.stat-desc{font-size:12px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);line-height:1.6}
+@media(max-width:768px){.stats-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.stats-grid{grid-template-columns:1fr}}
+
+/* PRACTICE */
+.practice{background:var(--white)}
+.practice-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:72px;gap:40px;flex-wrap:wrap}
+.practice-header p{max-width:360px;font-size:15px;color:var(--text-muted);line-height:1.8}
+.practice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(0,0,0,0.08)}
+.practice-card{background:var(--white);padding:clamp(28px,3vw,48px) clamp(20px,3vw,40px);transition:background 0.3s;cursor:default;position:relative;overflow:hidden}
+.practice-card::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.35s ease}
+.practice-card:hover::before{transform:scaleX(1)}
+.practice-card:hover{background:var(--cream)}
+.pc-num{font-family:var(--serif);font-size:13px;color:var(--gold);margin-bottom:28px;letter-spacing:0.08em}
+.pc-title{font-family:var(--serif);font-size:clamp(20px,2vw,24px);font-weight:400;color:var(--navy);margin-bottom:16px;line-height:1.2}
+.pc-desc{font-size:14px;color:var(--text-muted);line-height:1.8;margin-bottom:32px}
+.pc-tags{display:flex;flex-wrap:wrap;gap:8px}
+.pc-tag{font-size:10px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,150,90,0.35);padding:5px 12px}
+@media(max-width:900px){.practice-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.practice-grid{grid-template-columns:1fr}}
+
+/* TEAM */
+.team{background:var(--cream)}
+.team-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:clamp(40px,5vw,72px);flex-wrap:wrap;gap:24px}
+.team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(12px,2vw,24px)}
+.team-photo{width:100%;aspect-ratio:3/4;position:relative;overflow:hidden;margin-bottom:20px}
+.team-photo canvas{width:100%;height:100%;display:block}
+.team-badge{position:absolute;bottom:12px;right:12px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);background:rgba(13,27,42,0.85);border:1px solid rgba(184,150,90,0.3);padding:4px 10px}
+.team-name{font-family:var(--serif);font-size:clamp(16px,1.8vw,20px);font-weight:400;color:var(--navy);margin-bottom:4px}
+.team-role{font-size:11px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.team-desc{font-size:12px;color:var(--text-muted);line-height:1.7}
+@media(max-width:900px){.team-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.team-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:380px){.team-grid{grid-template-columns:1fr}}
+
+/* CASES */
+.cases{background:var(--navy)}
+.cases .section-title{color:var(--white)}
+.cases .section-title em{color:var(--gold-light)}
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:64px;background:rgba(255,255,255,0.06)}
+.case-card{background:var(--navy);padding:clamp(28px,3vw,48px) clamp(20px,3vw,40px);transition:background 0.25s;cursor:default}
+.case-card:hover{background:var(--navy-mid)}
+.case-tag{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.case-tag::before{content:'';width:20px;height:1px;background:var(--gold);display:block}
+.case-title{font-family:var(--serif);font-size:clamp(18px,2vw,22px);font-weight:400;color:rgba(255,255,255,0.9);margin-bottom:16px;line-height:1.3}
+.case-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8;margin-bottom:32px}
+.case-meta{display:flex;gap:clamp(12px,2vw,24px);flex-wrap:wrap}
+.case-meta-item .mk{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px}
+.case-meta-item .mv{font-size:13px;color:rgba(255,255,255,0.7)}
+@media(max-width:900px){.cases-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.cases-grid{grid-template-columns:1fr}}
+
+/* NEWS */
+.news{background:var(--white)}
+.news-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:clamp(16px,2.5vw,32px);margin-top:64px}
+.news-featured{position:relative;overflow:hidden;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end}
+#newsCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.news-featured-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,27,42,0.1) 0%,rgba(13,27,42,0.92) 65%)}
+.news-featured-content{position:relative;z-index:2;padding:clamp(24px,3vw,48px) clamp(24px,3vw,44px)}
+.news-date{font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.news-featured .news-title{font-family:var(--serif);font-size:clamp(20px,2.5vw,28px);font-weight:300;color:var(--white);line-height:1.3;margin-bottom:16px}
+.news-featured .news-excerpt{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.8;margin-bottom:28px}
+.news-link{font-size:11px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:gap 0.2s}
+.news-link:hover{gap:14px}
+.news-side{display:flex;flex-direction:column;gap:clamp(12px,2vw,24px)}
+.news-card{background:var(--cream);padding:clamp(18px,2vw,28px);border-bottom:2px solid transparent;transition:border-color 0.2s,background 0.2s;cursor:default}
+.news-card:hover{border-color:var(--gold);background:var(--cream-dark)}
+.news-card .news-date{margin-bottom:12px}
+.news-card .news-title{font-family:var(--serif);font-size:clamp(15px,1.5vw,17px);font-weight:400;color:var(--navy);line-height:1.4;margin-bottom:12px}
+.news-card .news-excerpt{font-size:12px;color:var(--text-muted);line-height:1.7}
+@media(max-width:900px){.news-grid{grid-template-columns:1fr 1fr}.news-featured{grid-column:1/-1;min-height:320px}}
+@media(max-width:560px){.news-grid{grid-template-columns:1fr}}
+
+/* CONTACT */
+.contact{background:var(--cream-dark);display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,100px);align-items:start}
+.contact-info .section-title{margin-bottom:32px}
+.contact-info p{font-size:15px;color:var(--text-muted);line-height:1.85;margin-bottom:48px}
+.contact-details{display:flex;flex-direction:column;gap:28px}
+.contact-detail .cd-label{font-size:10px;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.contact-detail .cd-value{font-family:var(--serif);font-size:clamp(16px,2vw,18px);font-weight:400;color:var(--navy);line-height:1.4}
+.contact-detail .cd-sub{font-size:13px;color:var(--text-muted);margin-top:4px}
+.contact-form form{display:flex;flex-direction:column;gap:20px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-group{display:flex;flex-direction:column;gap:8px}
+.form-group label{font-size:10px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted)}
+.form-group input,.form-group select,.form-group textarea{background:var(--white);border:1px solid rgba(0,0,0,0.1);padding:14px 18px;font-family:var(--sans);font-size:14px;font-weight:300;color:var(--text-dark);outline:none;transition:border-color 0.2s;resize:none;appearance:none;border-radius:0}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
+.form-note{font-size:11px;color:var(--text-muted);line-height:1.6}
+.btn-submit{align-self:flex-start;background:var(--navy);color:var(--white);border:none;padding:16px 40px;font-family:var(--sans);font-size:11px;font-weight:400;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:background 0.25s}
+.btn-submit:hover{background:var(--gold);color:var(--navy)}
+@media(max-width:768px){.contact{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+
+/* FOOTER */
+footer{background:var(--navy);padding:clamp(40px,6vw,60px) clamp(20px,5vw,60px) 40px;border-top:1px solid rgba(184,150,90,0.15)}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(24px,4vw,60px);padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.06);margin-bottom:32px}
+.footer-brand .logo{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--white);margin-bottom:16px}
+.footer-brand .logo span{color:var(--gold)}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.8;max-width:280px}
+.footer-col h4{font-size:10px;font-weight:400;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul a{font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s}
+.footer-col ul a:hover{color:rgba(255,255,255,0.8)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-bottom p{font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:0.06em}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.footer-top{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Marchetti <span>&</span> Associati</a>
+  <ul class="nav-links">
+    <li><a href="#manifesto">Lo Studio</a></li>
+    <li><a href="#practice">Aree di Pratica</a></li>
+    <li><a href="#team">Il Team</a></li>
+    <li><a href="#cases">Risultati</a></li>
+    <li><a href="#news">Pubblicazioni</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Contatto</a>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<ul class="mobile-menu" id="mobile-menu">
+  <li><a href="#manifesto">Lo Studio</a></li>
+  <li><a href="#practice">Aree di Pratica</a></li>
+  <li><a href="#team">Il Team</a></li>
+  <li><a href="#cases">Risultati</a></li>
+  <li><a href="#news">Pubblicazioni</a></li>
+  <li><a href="#contact" class="nav-cta">Contatto</a></li>
+</ul>
+
+<section class="hero" id="hero">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-canvas-wrap"><canvas id="heroCanvas"></canvas></div>
+  <div class="hero-content">
+    <div class="hero-label">Studio legale boutique — Fondato nel 1998</div>
+    <h1>Precisione.<br><em>Strategia.</em><br>Risultato.</h1>
+    <p class="hero-desc">Assistiamo imprese e individui in operazioni di diritto internazionale, arbitrato commerciale e contenzioso stragiudiziale di elevata complessità.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Richiedere una consulenza</a>
+      <a href="#practice" class="btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        Scopri le aree di pratica
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">26<span>+</span></div><div class="lbl">Anni di attività</div></div>
+      <div class="hero-stat"><div class="num">340<span>+</span></div><div class="lbl">Mandati internazionali</div></div>
+      <div class="hero-stat"><div class="num">18</div><div class="lbl">Giurisdizioni coperte</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="manifesto" id="manifesto">
+  <div class="manifesto-left">
+    <div class="section-label">Lo Studio</div>
+    <h2 class="section-title">L'eccellenza non è un'opzione. <em>È un impegno.</em></h2>
+    <div class="manifesto-values">
+      <div class="manifesto-value"><div class="vnum">01</div><div class="vtitle">Indipendenza</div><div class="vdesc">Nessun conflitto d'interesse. Ogni mandato riceve attenzione esclusiva.</div></div>
+      <div class="manifesto-value"><div class="vnum">02</div><div class="vtitle">Riservatezza</div><div class="vdesc">Protezione assoluta delle informazioni del cliente, in ogni fase.</div></div>
+      <div class="manifesto-value"><div class="vnum">03</div><div class="vtitle">Precisione</div><div class="vdesc">Analisi approfondita e documentazione ineccepibile in ogni procedura.</div></div>
+      <div class="manifesto-value"><div class="vnum">04</div><div class="vtitle">Efficacia</div><div class="vdesc">Soluzioni orientate al risultato, non alla complessità burocratica.</div></div>
+    </div>
+  </div>
+  <div class="manifesto-right">
+    <p>Marchetti & Associati nasce nel 1998 dalla visione dell'Avv. Riccardo Marchetti: creare uno studio capace di operare con la profondità di un boutique e la proiezione internazionale di una grande firma.</p>
+    <p>Nel corso di oltre due decenni, lo studio ha sviluppato una presenza consolidata in arbitrato commerciale internazionale, diritto societario transfrontaliero e contenzioso di alto valore presso istituzioni quali la CCI, l'ICSID e la LCIA.</p>
+    <blockquote>"Il diritto non è una scienza esatta — ma la nostra deduzione deve esserlo."
+      <footer style="font-family:var(--sans);font-size:12px;color:rgba(255,255,255,0.4);margin-top:12px;font-style:normal;letter-spacing:0.08em">— Avv. Riccardo Marchetti, Founding Partner</footer>
+    </blockquote>
+    <p>Con sede a Milano e una rete di corrispondenti in quattordici paesi, lo studio assiste clienti corporate e istituzionali in operazioni di complessità elevata.</p>
+  </div>
+</section>
+
+<section class="stats" id="stats">
+  <div class="section-label">In numeri</div>
+  <h2 class="section-title">Una reputazione costruita <em>caso per caso.</em></h2>
+  <div class="stats-grid">
+    <div class="stat-card" data-index="01"><div class="stat-num">94<sup>%</sup></div><div class="stat-desc">Tasso di esito favorevole in arbitrato</div></div>
+    <div class="stat-card" data-index="02"><div class="stat-num">2.4<sup>B</sup></div><div class="stat-desc">Valore complessivo dei mandati gestiti (€)</div></div>
+    <div class="stat-card" data-index="03"><div class="stat-num">18</div><div class="stat-desc">Giurisdizioni in cui lo studio è attivo</div></div>
+    <div class="stat-card" data-index="04"><div class="stat-num">12</div><div class="stat-desc">Professionisti nel team dedicato</div></div>
+  </div>
+</section>
+
+<section class="practice" id="practice">
+  <div class="practice-header">
+    <div><div class="section-label">Aree di Pratica</div><h2 class="section-title">Dove opera lo studio.</h2></div>
+    <p>Ogni area di pratica è presidiata da un partner senior con almeno quindici anni di esperienza specifica nella materia.</p>
+  </div>
+  <div class="practice-grid">
+    <div class="practice-card"><div class="pc-num">01</div><div class="pc-title">Arbitrato Internazionale</div><div class="pc-desc">Gestione di procedimenti arbitrali complessi davanti alle principali istituzioni internazionali. Redazione di clausole compromissorie, nomina di arbitri, memorie e difese orali in più lingue.</div><div class="pc-tags"><span class="pc-tag">ICC</span><span class="pc-tag">ICSID</span><span class="pc-tag">LCIA</span><span class="pc-tag">UNCITRAL</span></div></div>
+    <div class="practice-card"><div class="pc-num">02</div><div class="pc-title">Diritto Societario Transfrontaliero</div><div class="pc-desc">Assistenza in operazioni di M&A internazionale, joint venture, ristrutturazioni societarie cross-border e governance di gruppi multinazionali. Due diligence legale approfondita.</div><div class="pc-tags"><span class="pc-tag">M&A</span><span class="pc-tag">Joint Venture</span><span class="pc-tag">Due Diligence</span></div></div>
+    <div class="practice-card"><div class="pc-num">03</div><div class="pc-title">Contenzioso Commerciale</div><div class="pc-desc">Rappresentanza in controversie commerciali ad alto valore innanzi a tribunali italiani ed europei. Strategie di litigation integrata con strumenti di ADR.</div><div class="pc-tags"><span class="pc-tag">Litigation</span><span class="pc-tag">ADR</span><span class="pc-tag">Mediazione</span></div></div>
+    <div class="practice-card"><div class="pc-num">04</div><div class="pc-title">Diritto degli Investimenti</div><div class="pc-desc">Tutela di investitori stranieri in procedimenti ISDS. Negoziazione e revisione di accordi bilaterali di investimento (BIT). Analisi del rischio regolatorio in mercati emergenti.</div><div class="pc-tags"><span class="pc-tag">ISDS</span><span class="pc-tag">BIT</span><span class="pc-tag">Risk Analysis</span></div></div>
+    <div class="practice-card"><div class="pc-num">05</div><div class="pc-title">Compliance & Regolatorio</div><div class="pc-desc">Adeguamento normativo a regolamenti EU (ESG, DORA, CSRD), program di compliance antiriciclaggio, assistenza in procedimenti di supervisione e sanzioni regolamentari.</div><div class="pc-tags"><span class="pc-tag">ESG</span><span class="pc-tag">AML</span><span class="pc-tag">DORA</span></div></div>
+    <div class="practice-card"><div class="pc-num">06</div><div class="pc-title">Contrattualistica Internazionale</div><div class="pc-desc">Redazione e negoziazione di contratti complessi in contesti multi-giurisdizionali: accordi di distribuzione, licenze, franchising, EPC e contratti di finanza di progetto.</div><div class="pc-tags"><span class="pc-tag">EPC</span><span class="pc-tag">Licensing</span><span class="pc-tag">Project Finance</span></div></div>
+  </div>
+</section>
+
+<section class="team" id="team">
+  <div class="team-header">
+    <div><div class="section-label">Il Team</div><h2 class="section-title">Professionisti di <em>eccellenza.</em></h2></div>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo"><canvas class="portrait-canvas" data-initials="RM" data-hue="210" data-gender="m"></canvas><span class="team-badge">Founding Partner</span></div>
+      <div class="team-name">Riccardo Marchetti</div><div class="team-role">Founding Partner</div>
+      <div class="team-desc">Specialista in arbitrato ICC e ICSID. Laurea in Giurisprudenza (Bocconi), LLM Cambridge. Membro del panel arbitrale della CCI.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><canvas class="portrait-canvas" data-initials="EF" data-hue="195" data-gender="f"></canvas><span class="team-badge">Senior Partner</span></div>
+      <div class="team-name">Elena Ferretti</div><div class="team-role">Senior Partner</div>
+      <div class="team-desc">Responsabile dell'area Corporate. Ventuno anni di esperienza in M&A transfrontaliero. Membro della International Bar Association.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><canvas class="portrait-canvas" data-initials="MA" data-hue="220" data-gender="m"></canvas><span class="team-badge">Senior Partner</span></div>
+      <div class="team-name">Marco Andreotti</div><div class="team-role">Senior Partner</div>
+      <div class="team-desc">Esperto di contenzioso commerciale e compliance EU. Docente a contratto di Diritto del Commercio Internazionale presso l'Università di Milano.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><canvas class="portrait-canvas" data-initials="SC" data-hue="200" data-gender="f"></canvas><span class="team-badge">Of Counsel</span></div>
+      <div class="team-name">Sofia Conti</div><div class="team-role">Of Counsel</div>
+      <div class="team-desc">Specializzata in diritto degli investimenti e BIT. Precedentemente arbitro ad hoc in procedimenti UNCITRAL. Lingue: IT, EN, FR.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><canvas class="portrait-canvas" data-initials="LB" data-hue="215" data-gender="m"></canvas><span class="team-badge">Associate</span></div>
+      <div class="team-name">Lorenzo Bianchi</div><div class="team-role">Senior Associate</div>
+      <div class="team-desc">Diritto societario e contrattualistica internazionale. LLM NYU School of Law. Esperienza a New York e Londra prima dello studio nel 2019.</div>
+    </div>
+  </div>
+</section>
+
+<section class="cases" id="cases">
+  <div class="section-label">Risultati</div>
+  <h2 class="section-title">Una selezione di <em>mandati rappresentativi.</em></h2>
+  <div class="cases-grid">
+    <div class="case-card"><div class="case-tag">Arbitrato ICC</div><div class="case-title">Difesa di un gruppo industriale italiano in procedimento arbitrale da €380M</div><div class="case-desc">Rappresentanza di un consorzio manifatturiero in controversia contrattuale avviata da un ente statale mediorientale. Esito: lodo favorevole con rigetto integrale delle domande avversarie.</div><div class="case-meta"><div class="case-meta-item"><div class="mk">Sede</div><div class="mv">Parigi, CCI</div></div><div class="case-meta-item"><div class="mk">Durata</div><div class="mv">22 mesi</div></div><div class="case-meta-item"><div class="mk">Anno</div><div class="mv">2022</div></div></div></div>
+    <div class="case-card"><div class="case-tag">M&A Transfrontaliero</div><div class="case-title">Acquisizione di piattaforma logistica europea da parte di un fondo PE asiatico</div><div class="case-desc">Coordinamento legale in cinque giurisdizioni (IT, DE, NL, PL, SG). Strutturazione dell'accordo, due diligence integrata e gestione dei closing conditions.</div><div class="case-meta"><div class="case-meta-item"><div class="mk">Valore</div><div class="mv">€220M</div></div><div class="case-meta-item"><div class="mk">Giurisd.</div><div class="mv">5 paesi</div></div><div class="case-meta-item"><div class="mk">Anno</div><div class="mv">2023</div></div></div></div>
+    <div class="case-card"><div class="case-tag">ISDS — ICSID</div><div class="case-title">Tutela di investitore europeo contro misure espropriative in America Latina</div><div class="case-desc">Avvio e conduzione di procedimento ICSID per conto di un'impresa energetica europea a seguito di nazionalizzazione di asset. Accordo transattivo raggiunto prima della fase arbitrale finale.</div><div class="case-meta"><div class="case-meta-item"><div class="mk">Base giur.</div><div class="mv">BIT UE-PE</div></div><div class="case-meta-item"><div class="mk">Esito</div><div class="mv">Settlement</div></div><div class="case-meta-item"><div class="mk">Anno</div><div class="mv">2021</div></div></div></div>
+  </div>
+</section>
+
+<section class="news" id="news">
+  <div class="section-label">Pubblicazioni & News</div>
+  <h2 class="section-title">Pensiero <em>giuridico</em> e aggiornamento normativo.</h2>
+  <div class="news-grid">
+    <div class="news-featured">
+      <canvas id="newsCanvas"></canvas>
+      <div class="news-featured-overlay"></div>
+      <div class="news-featured-content">
+        <div class="news-date">Maggio 2025 — Pubblicazione</div>
+        <div class="news-title">La riforma ISDS nell'Unione Europea: implicazioni per gli investitori privati dopo la sentenza Achmea</div>
+        <div class="news-excerpt">Un'analisi approfondita delle conseguenze della giurisprudenza della Corte di Giustizia UE sul sistema di risoluzione delle controversie investitore-Stato, con particolare riferimento ai BIT intra-UE.</div>
+        <a href="#" class="news-link">Leggi l'articolo →</a>
+      </div>
+    </div>
+    <div class="news-side">
+      <div class="news-card"><div class="news-date">Aprile 2025 — Approfondimento</div><div class="news-title">DORA: le nuove responsabilità legali per i consigli di amministrazione degli enti finanziari</div><div class="news-excerpt">Il regolamento sulla resilienza operativa digitale impone obblighi di governance che ridisegnano la liability degli amministratori.</div></div>
+      <div class="news-card"><div class="news-date">Marzo 2025 — Alert</div><div class="news-title">Nuovi orientamenti CCI sulle clausole multi-tier: cosa cambia nella pratica arbitrale</div><div class="news-excerpt">La CCI ha aggiornato le linee guida per le clausole che prevedono fasi preliminari obbligatorie prima dell'arbitrato.</div></div>
+      <div class="news-card"><div class="news-date">Febbraio 2025 — Commento</div><div class="news-title">Il nuovo Codice della Crisi e le operazioni M&A: profili di rischio per l'acquirente</div><div class="news-excerpt">Analisi delle implicazioni della riforma sulla responsabilità dell'acquirente in operazioni di acquisizione di società in pre-insolvenza.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <div class="section-label">Contatti</div>
+    <h2 class="section-title">Parliamo del vostro <em>caso.</em></h2>
+    <p>Per una prima valutazione riservata, vi invitiamo a compilare il modulo o a contattarci direttamente. Ogni richiesta riceve risposta entro 24 ore lavorative.</p>
+    <div class="contact-details">
+      <div class="contact-detail"><div class="cd-label">Sede principale</div><div class="cd-value">Via Montenapoleone, 8</div><div class="cd-sub">20121 Milano, Italia</div></div>
+      <div class="contact-detail"><div class="cd-label">Telefono</div><div class="cd-value">+39 02 7600 4811</div><div class="cd-sub">Lun–Ven, 9:00–18:30</div></div>
+      <div class="contact-detail"><div class="cd-label">Email</div><div class="cd-value">info@marchettiassociati.it</div><div class="cd-sub">Risposta entro 1 giorno lavorativo</div></div>
+    </div>
+  </div>
+  <div class="contact-form">
+    <form onsubmit="return false;">
+      <div class="form-row">
+        <div class="form-group"><label>Nome</label><input type="text" placeholder="Mario"></div>
+        <div class="form-group"><label>Cognome</label><input type="text" placeholder="Rossi"></div>
+      </div>
+      <div class="form-group"><label>Email aziendale</label><input type="email" placeholder="m.rossi@azienda.com"></div>
+      <div class="form-group"><label>Organizzazione</label><input type="text" placeholder="Nome azienda o ente"></div>
+      <div class="form-group"><label>Area di interesse</label>
+        <select>
+          <option value="">Seleziona un'area di pratica</option>
+          <option>Arbitrato Internazionale</option>
+          <option>Diritto Societario Transfrontaliero</option>
+          <option>Contenzioso Commerciale</option>
+          <option>Diritto degli Investimenti</option>
+          <option>Compliance & Regolatorio</option>
+          <option>Contrattualistica Internazionale</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Descrizione della questione</label><textarea rows="5" placeholder="Descriva brevemente la situazione per cui richiede assistenza…"></textarea></div>
+      <p class="form-note">I dati trasmessi sono trattati in modo riservato ai sensi del Regolamento UE 2016/679 (GDPR) esclusivamente ai fini della gestione della richiesta.</p>
+      <button type="submit" class="btn-submit">Invia la richiesta</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand"><div class="logo">Marchetti <span>&</span> Associati</div><p>Studio legale boutique specializzato in diritto internazionale, arbitrato commerciale e contenzioso ad alto valore. Sede a Milano, operatività globale.</p></div>
+    <div class="footer-col"><h4>Studio</h4><ul><li><a href="#manifesto">Chi siamo</a></li><li><a href="#team">Il team</a></li><li><a href="#cases">Risultati</a></li><li><a href="#news">Pubblicazioni</a></li></ul></div>
+    <div class="footer-col"><h4>Servizi</h4><ul><li><a href="#practice">Arbitrato internazionale</a></li><li><a href="#practice">Diritto societario</a></li><li><a href="#practice">Contenzioso</a></li><li><a href="#practice">Compliance EU</a></li></ul></div>
+    <div class="footer-col"><h4>Contatti</h4><ul><li><a href="#">Via Montenapoleone, 8 — Milano</a></li><li><a href="#">+39 02 7600 4811</a></li><li><a href="#">info@marchettiassociati.it</a></li><li><a href="#contact">Richiedi consulenza</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Marchetti & Associati — Studio Legale. P.IVA 08234510969. Iscritto all'Ordine degli Avvocati di Milano.</p>
+    <p>Privacy Policy — Cookie Policy</p>
+  </div>
+</footer>
+
+<script>
+// ── UTILITY ──────────────────────────────────────────────────────────────────
+function hexToRgb(h){const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return[r,g,b]}
+function hsl(h,s,l){return`hsl(${h},${s}%,${l}%)`}
+
+// ── HERO CANVAS ───────────────────────────────────────────────────────────────
+function drawHero(){
+  const canvas=document.getElementById('heroCanvas');
+  if(!canvas)return;
+  const wrap=canvas.parentElement;
+  const W=wrap.offsetWidth||600;
+  const H=wrap.offsetHeight||800;
+  canvas.width=W;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+
+  // dark bg
+  ctx.fillStyle='#0d1b2a';
+  ctx.fillRect(0,0,W,H);
+
+  // architectural lines — courthouse columns suggestion
+  ctx.strokeStyle='rgba(184,150,90,0.08)';
+  ctx.lineWidth=1;
+  const cols=8;
+  for(let i=0;i<=cols;i++){
+    const x=i*(W/cols);
+    ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();
+  }
+  const rows=12;
+  for(let i=0;i<=rows;i++){
+    const y=i*(H/rows);
+    ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
+  }
+
+  // large scales of justice — abstract geometric
+  const cx=W*0.5,cy=H*0.42;
+  const scale=Math.min(W,H)*0.55;
+
+  // beam
+  ctx.strokeStyle='rgba(184,150,90,0.22)';
+  ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(cx-scale*0.45,cy);ctx.lineTo(cx+scale*0.45,cy);ctx.stroke();
+  // fulcrum
+  ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx,cy+scale*0.35);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx-scale*0.1,cy+scale*0.35);ctx.lineTo(cx+scale*0.1,cy+scale*0.35);ctx.stroke();
+
+  // left pan
+  const lx=cx-scale*0.42,ly=cy+scale*0.09;
+  ctx.strokeStyle='rgba(184,150,90,0.15)';
+  ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(lx,cy);ctx.lineTo(lx-scale*0.14,ly);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(lx,cy);ctx.lineTo(lx+scale*0.14,ly);ctx.stroke();
+  ctx.beginPath();ctx.arc(lx,ly,scale*0.14,0,Math.PI);ctx.stroke();
+
+  // right pan
+  const rx=cx+scale*0.42,ry=cy+scale*0.09;
+  ctx.beginPath();ctx.moveTo(rx,cy);ctx.lineTo(rx-scale*0.14,ry);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(rx,cy);ctx.lineTo(rx+scale*0.14,ry);ctx.stroke();
+  ctx.beginPath();ctx.arc(rx,ry,scale*0.14,0,Math.PI);ctx.stroke();
+
+  // glow center
+  const grd=ctx.createRadialGradient(cx,cy,0,cx,cy,scale*0.5);
+  grd.addColorStop(0,'rgba(184,150,90,0.07)');
+  grd.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=grd;
+  ctx.fillRect(0,0,W,H);
+
+  // subtle text watermark
+  ctx.save();
+  ctx.globalAlpha=0.04;
+  ctx.fillStyle='#b8965a';
+  ctx.font=`bold ${scale*0.18}px Georgia,serif`;
+  ctx.textAlign='center';
+  ctx.fillText('M&A',cx,cy+scale*0.58);
+  ctx.restore();
+}
+
+// ── PORTRAIT CANVAS ───────────────────────────────────────────────────────────
+function drawPortrait(canvas){
+  const initials=canvas.dataset.initials||'AB';
+  const hue=parseInt(canvas.dataset.hue||210);
+  const gender=canvas.dataset.gender||'m';
+
+  // size to parent
+  const parent=canvas.parentElement;
+  const W=parent.offsetWidth||200;
+  const H=parent.offsetHeight||Math.round(W*4/3);
+  canvas.width=W;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+
+  // background gradient
+  const bg=ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,`hsl(${hue},35%,18%)`);
+  bg.addColorStop(1,`hsl(${hue},40%,10%)`);
+  ctx.fillStyle=bg;
+  ctx.fillRect(0,0,W,H);
+
+  // subtle grid
+  ctx.strokeStyle=`hsla(${hue},30%,60%,0.05)`;
+  ctx.lineWidth=0.5;
+  const step=W/8;
+  for(let x=0;x<W;x+=step){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
+  for(let y=0;y<H;y+=step){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+
+  // figure silhouette
+  const cx=W/2,scale=W*0.38;
+  // determine skin tone variations
+  const skins=['hsl(25,55%,68%)','hsl(30,45%,60%)','hsl(20,40%,55%)','hsl(28,50%,65%)'];
+  const skinIdx=(initials.charCodeAt(0)+initials.charCodeAt(1))%skins.length;
+  const skin=skins[skinIdx];
+
+  // suit jacket
+  const jacketColors=['hsl(215,30%,25%)','hsl(220,28%,22%)','hsl(210,25%,28%)','hsl(218,32%,20%)'];
+  const jci=(initials.charCodeAt(0))%jacketColors.length;
+  const jacket=jacketColors[jci];
+
+  // body - torso
+  const torsoTop=H*0.42;
+  const torsoW=scale*0.72;
+  ctx.fillStyle=jacket;
+  ctx.beginPath();
+  ctx.moveTo(cx-torsoW*0.5,H);
+  ctx.lineTo(cx-torsoW*0.6,torsoTop);
+  ctx.quadraticCurveTo(cx,torsoTop-scale*0.08,cx+torsoW*0.6,torsoTop);
+  ctx.lineTo(cx+torsoW*0.5,H);
+  ctx.closePath();ctx.fill();
+
+  // shirt & tie
+  ctx.fillStyle='rgba(248,245,239,0.9)';
+  ctx.beginPath();
+  ctx.moveTo(cx-scale*0.1,H);
+  ctx.lineTo(cx-scale*0.12,torsoTop+scale*0.1);
+  ctx.lineTo(cx,torsoTop+scale*0.06);
+  ctx.lineTo(cx+scale*0.12,torsoTop+scale*0.1);
+  ctx.lineTo(cx+scale*0.1,H);
+  ctx.closePath();ctx.fill();
+
+  // tie
+  ctx.fillStyle=`hsl(${hue+180},40%,35%)`;
+  ctx.beginPath();
+  ctx.moveTo(cx-scale*0.045,torsoTop+scale*0.12);
+  ctx.lineTo(cx,torsoTop+scale*0.08);
+  ctx.lineTo(cx+scale*0.045,torsoTop+scale*0.12);
+  ctx.lineTo(cx+scale*0.03,torsoTop+scale*0.55);
+  ctx.lineTo(cx,torsoTop+scale*0.62);
+  ctx.lineTo(cx-scale*0.03,torsoTop+scale*0.55);
+  ctx.closePath();ctx.fill();
+
+  // lapels
+  ctx.fillStyle=jacket;
+  ctx.beginPath();
+  ctx.moveTo(cx-scale*0.12,torsoTop+scale*0.08);
+  ctx.lineTo(cx-scale*0.28,torsoTop+scale*0.28);
+  ctx.lineTo(cx-scale*0.1,torsoTop+scale*0.32);
+  ctx.lineTo(cx-scale*0.04,torsoTop+scale*0.14);
+  ctx.closePath();ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(cx+scale*0.12,torsoTop+scale*0.08);
+  ctx.lineTo(cx+scale*0.28,torsoTop+scale*0.28);
+  ctx.lineTo(cx+scale*0.1,torsoTop+scale*0.32);
+  ctx.lineTo(cx+scale*0.04,torsoTop+scale*0.14);
+  ctx.closePath();ctx.fill();
+
+  // neck
+  const neckW=scale*0.14;
+  const headBottom=H*0.36;
+  ctx.fillStyle=skin;
+  ctx.beginPath();
+  ctx.rect(cx-neckW/2,headBottom,neckW,torsoTop-headBottom+scale*0.04);
+  ctx.fill();
+
+  // head
+  const headR=scale*0.22;
+  const headCY=H*0.27;
+  ctx.fillStyle=skin;
+  ctx.beginPath();
+  ctx.ellipse(cx,headCY,headR*0.82,headR,0,0,Math.PI*2);
+  ctx.fill();
+
+  // hair
+  const hairColors=gender==='f'
+    ?['hsl(25,60%,25%)','hsl(30,50%,30%)','hsl(20,10%,15%)','hsl(28,45%,20%)']
+    :['hsl(25,40%,20%)','hsl(20,10%,12%)','hsl(30,35%,18%)','hsl(28,30%,22%)'];
+  const hci=(initials.charCodeAt(1))%hairColors.length;
+  ctx.fillStyle=hairColors[hci];
+
+  if(gender==='f'){
+    // longer hair
+    ctx.beginPath();
+    ctx.ellipse(cx,headCY-headR*0.4,headR*0.85,headR*0.55,0,Math.PI,0);
+    ctx.fill();
+    // sides
+    ctx.beginPath();
+    ctx.ellipse(cx-headR*0.75,headCY+headR*0.2,headR*0.18,headR*0.7,0.1,0,Math.PI*2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.ellipse(cx+headR*0.75,headCY+headR*0.2,headR*0.18,headR*0.7,-0.1,0,Math.PI*2);
+    ctx.fill();
+  } else {
+    // short hair
+    ctx.beginPath();
+    ctx.ellipse(cx,headCY-headR*0.35,headR*0.82,headR*0.5,0,Math.PI,0);
+    ctx.fill();
+  }
+
+  // eyes
+  ctx.fillStyle='rgba(30,30,40,0.85)';
+  ctx.beginPath();ctx.ellipse(cx-headR*0.28,headCY-headR*0.05,headR*0.09,headR*0.07,0,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(cx+headR*0.28,headCY-headR*0.05,headR*0.09,headR*0.07,0,0,Math.PI*2);ctx.fill();
+  // eye shine
+  ctx.fillStyle='rgba(255,255,255,0.6)';
+  ctx.beginPath();ctx.ellipse(cx-headR*0.25,headCY-headR*0.07,headR*0.03,headR*0.025,0,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.ellipse(cx+headR*0.31,headCY-headR*0.07,headR*0.03,headR*0.025,0,0,Math.PI*2);ctx.fill();
+
+  // mouth
+  ctx.strokeStyle=`hsl(${hsl.length>0?10:10},30%,45%)`;
+  ctx.strokeStyle='rgba(140,80,70,0.6)';
+  ctx.lineWidth=1.5;
+  ctx.beginPath();
+  ctx.arc(cx,headCY+headR*0.28,headR*0.12,0.1,Math.PI-0.1);
+  ctx.stroke();
+
+  // bottom fade
+  const fade=ctx.createLinearGradient(0,H*0.7,0,H);
+  fade.addColorStop(0,'rgba(13,27,42,0)');
+  fade.addColorStop(1,'rgba(13,27,42,0.75)');
+  ctx.fillStyle=fade;
+  ctx.fillRect(0,0,W,H);
+
+  // gold bottom accent
+  ctx.fillStyle='rgba(184,150,90,0.12)';
+  ctx.fillRect(0,H-3,W,3);
+}
+
+// ── NEWS CANVAS ───────────────────────────────────────────────────────────────
+function drawNews(){
+  const canvas=document.getElementById('newsCanvas');
+  if(!canvas)return;
+  const parent=canvas.parentElement;
+  const W=parent.offsetWidth||600;
+  const H=parent.offsetHeight||420;
+  canvas.width=W;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+
+  // dark base
+  ctx.fillStyle='#0b1825';
+  ctx.fillRect(0,0,W,H);
+
+  // architectural texture — law library / columns
+  ctx.strokeStyle='rgba(184,150,90,0.06)';
+  ctx.lineWidth=1;
+  const cols=6;
+  for(let i=0;i<=cols;i++){
+    const x=i*(W/cols);
+    ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();
+  }
+
+  // bookshelf rows suggestion
+  const rows=10;
+  for(let r=0;r<rows;r++){
+    const y=r*(H/rows);
+    ctx.fillStyle=`hsla(${210+r*3},35%,${12+r*1.5}%,0.6)`;
+    ctx.fillRect(0,y,W,H/rows-2);
+  }
+
+  // gold ornamental circle
+  const cx=W*0.5,cy=H*0.38;
+  const maxR=Math.min(W,H)*0.28;
+  for(let i=3;i>=1;i--){
+    ctx.strokeStyle=`rgba(184,150,90,${0.04*i})`;
+    ctx.lineWidth=i===1?1.5:0.5;
+    ctx.beginPath();ctx.arc(cx,cy,maxR*i*0.38,0,Math.PI*2);ctx.stroke();
+  }
+  // scales icon tiny
+  ctx.strokeStyle='rgba(184,150,90,0.25)';
+  ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(cx-maxR*0.35,cy);ctx.lineTo(cx+maxR*0.35,cy);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx,cy+maxR*0.3);ctx.stroke();
+
+  const grd=ctx.createRadialGradient(cx,cy,0,cx,cy,maxR*1.2);
+  grd.addColorStop(0,'rgba(184,150,90,0.08)');
+  grd.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=grd;ctx.fillRect(0,0,W,H);
+}
+
+// ── MOBILE MENU ───────────────────────────────────────────────────────────────
+(function(){
+  const toggle=document.getElementById('nav-toggle');
+  const menu=document.getElementById('mobile-menu');
+  if(!toggle||!menu)return;
+  function close(){toggle.classList.remove('open');menu.classList.remove('open');document.body.classList.remove('menu-open');toggle.setAttribute('aria-expanded','false');}
+  toggle.addEventListener('click',()=>{
+    const open=!menu.classList.contains('open');
+    toggle.classList.toggle('open',open);
+    menu.classList.toggle('open',open);
+    document.body.classList.toggle('menu-open',open);
+    toggle.setAttribute('aria-expanded',String(open));
+  });
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));
+  window.addEventListener('resize',()=>{if(window.innerWidth>768)close();});
+})();
+
+// ── INIT & RESIZE ─────────────────────────────────────────────────────────────
+function initAll(){
+  drawHero();
+  drawNews();
+  document.querySelectorAll('.portrait-canvas').forEach(drawPortrait);
+}
+
+// Wait for fonts+layout, then draw
+window.addEventListener('load',()=>{setTimeout(initAll,80)});
+
+let resizeTimer;
+window.addEventListener('resize',()=>{
+  clearTimeout(resizeTimer);
+  resizeTimer=setTimeout(initAll,150);
+});
+</script>
+</body>
+</html>
