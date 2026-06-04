@@ -28,8 +28,8 @@
   --bg: #f5f2ec;
   --ink: #1a1f24;
   --muted: #5c6168;
-  --accent: #1f4d52;
-  --accent-soft: #d4ddd9;
+  --accent: #c4a45a;
+  --accent-soft: #e8d5a8;
   --line: #1a1f2415;
   --card: #ffffff;
 }
@@ -240,7 +240,7 @@ section { padding: 120px 0; }
 .about-stats {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0;
   border-top: 1px solid var(--line);
   margin-top: 40px;
@@ -248,10 +248,11 @@ section { padding: 120px 0; }
 .stat {
   padding: 28px 24px;
   border-right: 1px solid var(--line);
+  text-align: center;
 }
 .stat:last-child { border-right: none; }
-.stat:first-child { padding-left: 0; }
-.stat:last-child { padding-right: 0; }
+.stat:first-child { padding-left: 24px; }
+.stat:last-child { padding-right: 24px; }
 .stat-num {
   font-family: 'Fraunces', serif;
   font-size: 2.4rem;
@@ -363,9 +364,9 @@ section { padding: 120px 0; }
 }
 
 /* CONTACT */
-.contact-section { background: var(--accent); color: var(--bg); }
-.contact-section .section-label { color: var(--accent-soft); }
-.contact-section .section-label::before { background: var(--accent-soft); }
+.contact-section { background: var(--ink); color: var(--bg); }
+.contact-section .section-label { color: var(--accent); }
+.contact-section .section-label::before { background: var(--accent); }
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -409,7 +410,7 @@ section { padding: 120px 0; }
   font-size: 0.78rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--accent-soft);
+  color: var(--accent);
   margin-bottom: 6px;
   font-weight: 500;
 }
@@ -443,10 +444,9 @@ footer {
   .hero-cta { flex-direction: column; align-items: flex-start; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .about-photo { max-width: 220px; aspect-ratio: 4/5; }
-  .about-stats { grid-template-columns: 1fr 1fr; margin-top: 20px; }
-  .stat { padding: 24px 20px; border-bottom: 1px solid var(--line); }
-  .stat:nth-child(odd) { border-right: 1px solid var(--line); padding-left: 0; }
-  .stat:nth-child(even) { border-right: none; padding-right: 0; }
+  .about-stats { grid-template-columns: 1fr; margin-top: 20px; }
+  .stat { padding: 20px 24px; border-right: none; border-bottom: 1px solid var(--line); text-align: center; }
+  .stat:last-child { border-bottom: none; }
   .skills-grid { grid-template-columns: 1fr; }
   .project { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
   .project-year { text-align: left; }
@@ -942,10 +942,7 @@ section, header, footer, nav {
           <div class="stat-num">3</div>
           <div class="stat-label">Lingue (IT · EN · DE)</div>
         </div>
-        <div class="stat">
-          <div class="stat-num">2026</div>
-          <div class="stat-label">Anno di partenza in HR</div>
-        </div>
+
       </div>
     </div>
   </div>
