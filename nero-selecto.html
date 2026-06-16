@@ -927,17 +927,53 @@ const beans = Array.from({length:32},()=>({
 
 let scrollY = 0;
 
+/* ── APERTURA: chicchi raggruppati che si disperdono ── */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const INTRO_DURATION = 1500; // ms
+let introStart = null;
+let introActive = !prefersReducedMotion; // se reduced-motion, niente intro
+
+// posizione di partenza ammassata al centro dello schermo
+const clusterX = window.innerWidth / 2;
+const clusterY = window.innerHeight / 2;
+beans.forEach(b => {
+  // offset stretto attorno al centro, così partono "insieme"
+  b.startX = clusterX + (Math.random()-0.5) * window.innerWidth * 0.18;
+  b.startY = clusterY + (Math.random()-0.5) * window.innerHeight * 0.18;
+});
+
+function easeOutCubic(t){ return 1 - Math.pow(1-t, 3); }
+
 function animBeans(ts) {
   bCtx.clearRect(0,0,beansCanvas.width,beansCanvas.height);
   const t = ts*0.001;
+
+  // progressione intro 0→1
+  let intro = 1;
+  if (introActive) {
+    if (introStart === null) introStart = ts;
+    intro = Math.min((ts - introStart) / INTRO_DURATION, 1);
+    if (intro >= 1) introActive = false;
+  }
+  const e = easeOutCubic(intro);
+
   beans.forEach(b => {
     b.angle += b.rotSpeed;
     b.x += b.driftX;
     if(b.x > beansCanvas.width+20) b.x=-20;
     if(b.x < -20) b.x=beansCanvas.width+20;
     const drift = Math.sin(t*b.speed + b.x*0.008)*20;
-    const sy = b.baseY - scrollY*(0.04+b.pFactor) + drift;
-    if(sy>-30 && sy<beansCanvas.height+30) drawBean(bCtx,b.x,sy,b.size,b.angle,b.alpha);
+    const targetY = b.baseY - scrollY*(0.04+b.pFactor) + drift;
+
+    // durante l'intro interpola da posizione ammassata → posizione normale
+    let drawX = b.x, drawY = targetY, drawAlpha = b.alpha;
+    if (e < 1) {
+      drawX = b.startX + (b.x - b.startX) * e;
+      drawY = b.startY + (targetY - b.startY) * e;
+      drawAlpha = b.alpha * Math.min(e*1.6, 1); // fade-in dolce
+    }
+
+    if(drawY>-30 && drawY<beansCanvas.height+30) drawBean(bCtx,drawX,drawY,b.size,b.angle,drawAlpha);
   });
   requestAnimationFrame(animBeans);
 }
