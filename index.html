@@ -610,6 +610,31 @@ section { padding: 112px 0; }
 }
 .case-meta dd.muted { color: var(--muted); font-style: italic; }
 
+.case-more {
+  margin-top: 44px;
+  padding: 32px 34px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255,255,255,.42);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.case-more p {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 1.06rem;
+  line-height: 1.58;
+}
+.case-more em { color: var(--accent); font-style: italic; }
+@media (max-width: 640px) {
+  .case-more { padding: 24px; }
+  .case-more p { font-size: .98rem; }
+}
+
 .mockup-frame {
   background: var(--card);
   border: 1px solid var(--line);
@@ -669,14 +694,53 @@ section { padding: 112px 0; }
 .mock-phone-lines span { display: block; height: 6px; background: var(--line); border-radius: 99px; }
 .mock-phone-lines span:last-child { width: 62%; }
 
-.mock-video video { width: 100%; display: block; border-radius: 12px; background: var(--ink); }
-.mock-video-note {
+.mock-chat { display: flex; flex-direction: column; gap: 14px; }
+.chat-msg { display: flex; gap: 12px; align-items: flex-start; }
+.chat-msg.chat-ai { flex-direction: row; }
+.chat-msg.chat-user { flex-direction: row-reverse; }
+.chat-avatar {
+  flex-shrink: 0;
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
   font-family: var(--sans-ui);
-  font-size: .78rem;
-  color: var(--muted);
-  margin-top: 12px;
-  line-height: 1.5;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
 }
+.chat-avatar.ai { background: var(--ink); color: var(--bg); }
+.chat-bubble {
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: var(--blush);
+  max-width: 78%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.chat-msg.chat-ai .chat-bubble {
+  background: rgba(255,255,255,.72);
+  border: 1px solid var(--line);
+}
+.chat-line { display: block; height: 7px; border-radius: 99px; background: var(--accent-soft); }
+.chat-msg.chat-ai .chat-line { background: var(--line); }
+.chat-quiz-title {
+  height: 9px; width: 55%;
+  border-radius: 99px;
+  background: var(--accent);
+  margin-bottom: 4px;
+}
+.chat-quiz-item { display: flex; align-items: center; gap: 9px; }
+.chat-dot {
+  flex-shrink: 0;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-soft);
+  background: transparent;
+}
+.chat-dot.filled { background: var(--accent); border-color: var(--accent); }
 
 .timeline-section {
   background: linear-gradient(180deg, var(--bg) 0%, #f6ebe8 100%);
@@ -1253,15 +1317,26 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
               <dt>Cosa ho imparato</dt>
               <dd>L'AI in formazione è utile quando accelera il lavoro del docente senza sostituire valutazione e responsabilità.</dd>
             </dl>
-            <div class="mockup-frame">
+            <div class="mockup-frame tilt">
               <div class="mockup-chrome"><span></span><span></span><span></span></div>
-              <div class="mockup-body mock-video">
-                <video controls playsinline preload="metadata" poster="ai-quiz-poster.jpg">
-                  <source src="ai-quiz-demo.mp4" type="video/mp4">
-                  Il tuo browser non supporta la riproduzione video.
-                  <a href="https://drive.google.com/file/d/1-8zghSlMGKXzmMefBBgviZgLp0WpQUy5/view" target="_blank" rel="noopener">Guarda la demo su Google Drive</a>.
-                </video>
-                <p class="mock-video-note">Demo del generatore di quiz basato su GPT-4o: partendo da una fonte esterna produce una bozza strutturata pronta per la revisione del docente.</p>
+              <div class="mockup-body mock-chat">
+                <div class="chat-msg chat-user">
+                  <div class="chat-avatar">U</div>
+                  <div class="chat-bubble">
+                    <span class="chat-line" style="width:88%"></span>
+                    <span class="chat-line" style="width:64%"></span>
+                  </div>
+                </div>
+                <div class="chat-msg chat-ai">
+                  <div class="chat-avatar ai">AI</div>
+                  <div class="chat-bubble">
+                    <div class="chat-quiz-title"></div>
+                    <div class="chat-quiz-item"><span class="chat-dot"></span><span class="chat-line" style="width:72%"></span></div>
+                    <div class="chat-quiz-item"><span class="chat-dot"></span><span class="chat-line" style="width:80%"></span></div>
+                    <div class="chat-quiz-item"><span class="chat-dot filled"></span><span class="chat-line" style="width:66%"></span></div>
+                    <div class="chat-quiz-item"><span class="chat-dot"></span><span class="chat-line" style="width:58%"></span></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1309,6 +1384,17 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
         </div>
       </details>
 
+    </div>
+
+    <div class="case-more" data-reveal>
+      <p>
+        Questi quattro progetti raccontano solo una piccola parte del mio percorso. 
+        Per una panoramica completa, inclusi i lavori più recenti, le sperimentazioni e gli aggiornamenti, puoi visitare il mio profilo LinkedIn.
+      </p>
+      <a href="https://www.linkedin.com/in/greta-corradini" target="_blank" rel="noopener" class="btn btn-ghost">
+        Vedi altri progetti su LinkedIn
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 </section>
