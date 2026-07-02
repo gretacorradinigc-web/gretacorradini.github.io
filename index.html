@@ -933,10 +933,14 @@ footer {
 
 img, video, iframe, svg { max-width: 100%; height: auto; }
 @media (prefers-reduced-motion: reduce) {
-  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition: none !important; scroll-behavior: auto !important; }
-  [data-reveal] { opacity: 1 !important; transform: none !important; }
-  .hero-line span { transform: none !important; animation: none !important; }
-  .cursor-glow { display: none !important; }
+  .hero-line span,
+  .mock-bar,
+  .reveal { 
+    animation: none !important; 
+    transform: none !important; 
+    opacity: 1 !important; 
+  }
+  html { scroll-behavior: auto !important; }
 }
 </style>
 </head>
