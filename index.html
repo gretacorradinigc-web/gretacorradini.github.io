@@ -933,14 +933,18 @@ footer {
 
 img, video, iframe, svg { max-width: 100%; height: auto; }
 @media (prefers-reduced-motion: reduce) {
+  /* Disattiva solo le animazioni con traslazioni ampie o trigger da scroll.
+     Le ambient animations (orbit ring, glow pulse, ticker, pill float) restano
+     attive: sono lente, decorative e non causano disagio vestibolare. */
   .hero-line span,
   .mock-bar,
-  .reveal { 
-    animation: none !important; 
-    transform: none !important; 
-    opacity: 1 !important; 
+  [data-reveal] {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
   html { scroll-behavior: auto !important; }
+  .cursor-glow { display: none !important; }
 }
 </style>
 </head>
@@ -1480,9 +1484,9 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
   track.innerHTML = buildSet() + buildSet();
 
   let offset = 0;
-  const speed = 0.45;
-  let halfWidth = track.scrollWidth / 2;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const speed = reduceMotion ? 0.18 : 0.45;
+  let halfWidth = track.scrollWidth / 2;
   window.addEventListener('resize', () => { halfWidth = track.scrollWidth / 2; });
   function step() {
     offset -= speed;
@@ -1490,7 +1494,7 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
     track.style.transform = 'translateX(' + offset + 'px)';
     requestAnimationFrame(step);
   }
-  if (!reduceMotion) requestAnimationFrame(step);
+  requestAnimationFrame(step);
 })();
 
 (function() {
