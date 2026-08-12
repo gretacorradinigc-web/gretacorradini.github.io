@@ -472,37 +472,9 @@ section { padding: 112px 0; }
 
 .about-grid {
   display: grid;
-  grid-template-columns: .72fr 1.28fr;
-  gap: 80px;
-  align-items: center;
-}
-.about-photo {
-  position: relative;
-  aspect-ratio: 4/5;
-  max-width: 320px;
+  grid-template-columns: 1fr;
+  max-width: 760px;
   margin: 0 auto;
-  border-radius: 28px;
-  overflow: hidden;
-  background: var(--accent);
-  box-shadow: var(--shadow);
-}
-.about-photo::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(57,42,49,.34), transparent 45%);
-}
-.about-photo img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center 25%;
-}
-.about-photo-caption {
-  position: absolute; z-index: 2; left: 18px; right: 18px; bottom: 18px;
-  color: var(--bg);
-  font-family: var(--sans-ui);
-  font-size: .68rem;
-  letter-spacing: .16em;
-  text-transform: uppercase;
 }
 .about-text p {
   font-size: 1.18rem;
@@ -742,6 +714,35 @@ section { padding: 112px 0; }
 }
 .chat-dot.filled { background: var(--accent); border-color: var(--accent); }
 
+.mock-lms { display: flex; flex-direction: column; gap: 14px; }
+.mock-lms-top { display: flex; align-items: center; justify-content: space-between; }
+.mock-lms-title { height: 14px; width: 46%; border-radius: 99px; background: var(--accent); }
+.mock-lms-badge {
+  font-family: var(--sans-ui);
+  font-size: .6rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  background: var(--blush);
+  padding: 5px 10px;
+  border-radius: 99px;
+}
+.mock-lms-paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.mock-lms-path {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mock-lms-bar-bg { height: 6px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.mock-lms-bar-fill { height: 100%; border-radius: 99px; background: var(--accent); }
+.mock-lms-foot { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+.mock-lms-stat { flex: 1; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; }
+.mock-lms-stat-num { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--accent-deep); line-height: 1; }
+.mock-lms-stat-label { font-family: var(--sans-ui); font-size: .62rem; letter-spacing: .06em; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+
 .timeline-section {
   background: linear-gradient(180deg, var(--bg) 0%, #f6ebe8 100%);
 }
@@ -823,6 +824,25 @@ section { padding: 112px 0; }
   max-width: 65ch;
   margin-bottom: 10px;
 }
+.timeline-body ul {
+  margin: 10px 0 0;
+  padding-left: 20px;
+}
+.timeline-body li {
+  margin-bottom: 6px;
+}
+.timeline-note {
+  font-family: var(--sans-ui);
+  font-size: .82rem;
+  font-style: normal;
+  color: var(--accent-deep);
+  background: var(--blush);
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 99px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
 .timeline-date {
   font-family: var(--sans-ui);
   font-size: .72rem;
@@ -831,37 +851,6 @@ section { padding: 112px 0; }
 }
 
 .section-stone { background: var(--stone); }
-.lab-section { padding: 86px 0; }
-.lab-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-.lab-card {
-  position: relative;
-  aspect-ratio: 4/3;
-  overflow: hidden;
-  border-radius: 22px;
-  text-decoration: none;
-  color: var(--bg);
-  border: 1px solid var(--line);
-  box-shadow: 0 18px 50px rgba(57,42,49,.08);
-  transition: transform .35s ease, box-shadow .35s ease;
-}
-.lab-card:hover { transform: translateY(-6px); box-shadow: 0 28px 70px rgba(57,42,49,.18); }
-.lab-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center top; transition: transform .55s ease; }
-.lab-card:hover .lab-card-bg { transform: scale(1.06); }
-.lab-card-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(57,42,49,0) 20%, rgba(57,42,49,.9) 100%); }
-.lab-card-body { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 2; }
-.lab-card-tag {
-  font-family: var(--sans-ui);
-  font-size: .6rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--accent-soft);
-  margin-bottom: 5px;
-}
-.lab-card-title { font-size: 1.08rem; font-weight: 600; line-height: 1.1; color: #fff; }
 
 .contact-section {
   background: var(--ink);
@@ -948,7 +937,6 @@ footer {
   .process-map { grid-template-columns: repeat(2, 1fr); }
   .timeline-wrap { grid-template-columns: 1fr; gap: 36px; }
   .timeline-sticky { position: relative; top: auto; }
-  .lab-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 880px) {
@@ -974,20 +962,20 @@ footer {
   .section-title { font-size: clamp(1.8rem, 7vw, 2.55rem); }
   .section-intro { font-size: 1rem; margin-bottom: 34px; }
   .about-grid, .case-body, .contact-grid { grid-template-columns: 1fr; gap: 34px; }
-  .about-photo { max-width: 230px; }
   .case-item > summary { grid-template-columns: 42px 1fr 34px; padding: 22px; gap: 14px; }
   .case-year { display: none; }
   .case-body { padding: 0 22px 26px; }
   .case-meta { grid-template-columns: 1fr; gap: 8px; }
   .case-meta dt { margin-top: 10px; }
   .ticker-item { font-size: 1.02rem; padding: 14px 24px; }
+  .mock-lms-paths { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {
   .container { padding: 0 16px; }
   .hero h1 { font-size: clamp(2.15rem, 11vw, 3.1rem); }
   .hero-cta { flex-direction: column; align-items: flex-start; }
-  .focus-grid, .process-map, .lab-grid { grid-template-columns: 1fr; }
+  .focus-grid, .process-map { grid-template-columns: 1fr; }
   .focus-card { min-height: 220px; }
   .orbit-card { min-height: 300px; border-radius: 22px; --radius: 68px; }
   .orbit-center { width: 138px; height: 138px; font-size: .66rem; }
@@ -997,9 +985,6 @@ footer {
 
 img, video, iframe, svg { max-width: 100%; height: auto; }
 @media (prefers-reduced-motion: reduce) {
-  /* Disattiva solo le animazioni con traslazioni ampie o trigger da scroll.
-     Le ambient animations (orbit ring, glow pulse, ticker, pill float) restano
-     attive: sono lente, decorative e non causano disagio vestibolare. */
   .hero-line span,
   .mock-bar,
   [data-reveal] {
@@ -1168,10 +1153,6 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
     <h2 class="section-title" data-reveal>Non parto dallo strumento. Parto da <em>chi lo deve usare.</em></h2>
 
     <div class="about-grid">
-      <div class="about-photo magnetic" data-reveal>
-        <img src="greta.png" alt="Greta Corradini" loading="lazy">
-        <div class="about-photo-caption">Mezzolombardo · TN</div>
-      </div>
       <div class="about-text">
         <p data-reveal>
           Ho studiato interfacce, comunicazione e processi cognitivi. In azienda ho ritrovato gli stessi temi dentro contesti molto concreti: formazione, documentazione, portali interni, selezione, onboarding.
@@ -1192,7 +1173,7 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
     <div class="section-label" data-reveal>Progetti selezionati</div>
     <h2 class="section-title" data-reveal>Case study interattive, non semplici <em>descrizioni.</em></h2>
     <p class="section-intro" data-reveal>
-      Quattro progetti diversi, con lo stesso filo conduttore: rendere informazioni, strumenti e processi più comprensibili.
+      Cinque progetti diversi, con lo stesso filo conduttore: rendere informazioni, strumenti e processi più comprensibili.
     </p>
 
     <div class="case-list">
@@ -1200,6 +1181,64 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
       <details class="case-item" open>
         <summary>
           <div class="case-num">01</div>
+          <div class="case-heading">
+            <div class="case-title">Ecosistema formativo · Gruppo Barchetti</div>
+            <div class="case-hook">Sto costruendo, da zero, il sistema di formazione per un gruppo di ~600 persone: dall'analisi dei fabbisogni al learning analytics.</div>
+          </div>
+          <div class="case-year">2026</div>
+          <div class="case-chevron" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="case-body-outer">
+          <div class="case-body">
+            <dl class="case-meta">
+              <dt>Problema</dt>
+              <dd>Un gruppo multi-brand con 40+ sedi non aveva un ecosistema formativo strutturato: onboarding, competenze di ruolo e compliance erano gestiti in modo non uniforme tra le diverse famiglie professionali.</dd>
+              <dt>Approccio</dt>
+              <dd>Analisi dei fabbisogni con Direzione e responsabili di funzione; selezione e configurazione del LMS (Docebo); progettazione e produzione dei contenuti (Articulate Rise 360, SCORM); test interni sui percorsi prima del rilascio.</dd>
+              <dt>Tecnologie</dt>
+              <dd class="muted">Docebo LMS · Articulate Rise 360 · Reach 360 · SCORM · Beaconforce</dd>
+              <dt>Stato</dt>
+              <dd><span class="timeline-note">In costruzione · trial da settembre 2026</span><br>15–20 famiglie professionali, rollout iniziale su 250 utenti su un bacino di ~600 persone. Il sistema di learning analytics (Beaconforce) entra in funzione insieme al trial.</dd>
+              <dt>Cosa sto imparando</dt>
+              <dd>Progettare un ecosistema formativo da zero significa soprattutto tradurre esigenze operative grezze, spesso poco strutturate, in obiettivi di apprendimento misurabili, prima ancora di aprire l'editor dei contenuti.</dd>
+            </dl>
+            <div class="mockup-frame tilt">
+              <div class="mockup-chrome"><span></span><span></span><span></span></div>
+              <div class="mockup-body mock-lms">
+                <div class="mock-lms-top">
+                  <div class="mock-lms-title"></div>
+                  <div class="mock-lms-badge">In costruzione</div>
+                </div>
+                <div class="mock-lms-paths">
+                  <div class="mock-lms-path">
+                    <span class="mock-line" style="width:70%"></span>
+                    <div class="mock-lms-bar-bg"><div class="mock-lms-bar-fill" style="width:85%"></div></div>
+                  </div>
+                  <div class="mock-lms-path">
+                    <span class="mock-line" style="width:55%"></span>
+                    <div class="mock-lms-bar-bg"><div class="mock-lms-bar-fill" style="width:60%"></div></div>
+                  </div>
+                  <div class="mock-lms-path">
+                    <span class="mock-line" style="width:62%"></span>
+                    <div class="mock-lms-bar-bg"><div class="mock-lms-bar-fill" style="width:35%"></div></div>
+                  </div>
+                </div>
+                <div class="mock-lms-foot">
+                  <div class="mock-lms-stat"><div class="mock-lms-stat-num">~600</div><div class="mock-lms-stat-label">Persone</div></div>
+                  <div class="mock-lms-stat"><div class="mock-lms-stat-num">15–20</div><div class="mock-lms-stat-label">Famiglie prof.</div></div>
+                  <div class="mock-lms-stat"><div class="mock-lms-stat-num">250</div><div class="mock-lms-stat-label">Trial set. '26</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="case-item">
+        <summary>
+          <div class="case-num">02</div>
           <div class="case-heading">
             <div class="case-title">Knowledge Management su Notion</div>
             <div class="case-hook">Ho riorganizzato documentazione e procedure interne in un sistema più leggibile e aggiornabile.</div>
@@ -1242,7 +1281,7 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
 
       <details class="case-item">
         <summary>
-          <div class="case-num">02</div>
+          <div class="case-num">03</div>
           <div class="case-heading">
             <div class="case-title">Dashboard Recruiting</div>
             <div class="case-hook">Ho trasformato dati HR dispersi in uno strumento decisionale più leggibile per il management.</div>
@@ -1293,7 +1332,7 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
 
       <details class="case-item">
         <summary>
-          <div class="case-num">03</div>
+          <div class="case-num">04</div>
           <div class="case-heading">
             <div class="case-title">AI Quiz Generator</div>
             <div class="case-hook">Ho sperimentato l'AI come supporto alla progettazione formativa, mantenendo il controllo umano sul contenuto.</div>
@@ -1345,7 +1384,7 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
 
       <details class="case-item">
         <summary>
-          <div class="case-num">04</div>
+          <div class="case-num">05</div>
           <div class="case-heading">
             <div class="case-title">Hotelity</div>
             <div class="case-hook">Ho progettato un'interfaccia per turni e comunicazione interna partendo dai bisogni del personale operativo.</div>
@@ -1388,7 +1427,7 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
 
     <div class="case-more" data-reveal>
       <p>
-        Questi quattro progetti raccontano solo una piccola parte del mio percorso. 
+        Questi cinque progetti raccontano solo una parte del mio percorso.
         Per una panoramica completa, inclusi i lavori più recenti, le sperimentazioni e gli aggiornamenti, puoi visitare il mio profilo LinkedIn.
       </p>
       <a href="https://www.linkedin.com/in/greta-corradini" target="_blank" rel="noopener" class="btn btn-ghost">
@@ -1407,16 +1446,26 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
     <div class="timeline-wrap">
       <aside class="timeline-sticky" data-reveal>
         <h3>La direzione è cambiata.</h3>
-        <p>Dal supporto al recruiting verso progettazione formativa, documentazione digitale, strumenti interni e trasformazione dei processi.</p>
+        <p>Dal supporto al recruiting verso progettazione formativa end-to-end, learning analytics, documentazione digitale e trasformazione dei processi.</p>
       </aside>
 
       <div class="timeline" id="timeline">
         <div class="timeline-item" data-reveal>
           <div class="timeline-dot"></div>
-          <div class="timeline-tag">Learning · Digital Workplace · Processi</div>
+          <div class="timeline-tag">Learning &amp; Development · Digital Learning</div>
           <div class="timeline-title">Gruppo Barchetti</div>
-          <div class="timeline-role">Formazione interna, documentazione digitale e supporto HR</div>
-          <p class="timeline-body">Supporto al recruiting, progettazione di contenuti e percorsi interni, riorganizzazione del portale HR su Notion e digitalizzazione di procedure operative.</p>
+          <div class="timeline-role">Learning &amp; Development, Data Analysis &amp; Digitalization</div>
+          <div class="timeline-note">Trial con i primi utenti da settembre 2026</div>
+          <p class="timeline-body">
+            Sto costruendo l'ecosistema formativo del Gruppo (~600 persone), con learning path differenziati per 15–20 famiglie professionali:
+          </p>
+          <ul class="timeline-body">
+            <li>Gestione end-to-end del processo formativo: fabbisogni, obiettivi, contenuti, LMS, valutazione dell'efficacia.</li>
+            <li>Sviluppo e-learning con Articulate Rise 360 (quiz, scenari, interazioni); gestione SCORM e utilizzo iniziale di Reach 360.</li>
+            <li>Amministrazione Docebo LMS: corsi, utenti, enrollment, learning plan, certificazioni, reportistica.</li>
+            <li>Progettazione del sistema di learning analytics su Beaconforce, in avvio insieme al trial.</li>
+            <li>In parallelo: dashboard HR/pipeline/turnover, digitalizzazione procedure su Notion, supporto ai processi di selezione.</li>
+          </ul>
           <div class="timeline-date">02/2026 – attuale · Bolzano, BZ</div>
         </div>
 
@@ -1425,7 +1474,7 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
           <div class="timeline-tag">Formazione · Microsoft 365</div>
           <div class="timeline-title">SAIP Formazione</div>
           <div class="timeline-role">Docente formativo</div>
-          <p class="timeline-body">Progettazione ed erogazione di percorsi su Microsoft 365 in FAD, adattati a gruppi con livelli di partenza diversi.</p>
+          <p class="timeline-body">Progettazione ed erogazione autonoma di ~120 ore di formazione (classi di 10–15 persone) su Microsoft 365 e competenze digitali, in FAD, con materiali e assessment su misura.</p>
           <div class="timeline-date">11/2025 – 01/2026 · Latina, LT (FAD)</div>
         </div>
 
@@ -1434,7 +1483,7 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
           <div class="timeline-tag">Formazione · Tutoraggio</div>
           <div class="timeline-title">ENFAP Trentino</div>
           <div class="timeline-role">Docente e tutor formativo</div>
-          <p class="timeline-body">Docenza e tutoring su tecnologie digitali, retail e Microsoft 365, con monitoraggio dell'apprendimento e supporto operativo agli studenti.</p>
+          <p class="timeline-body">4 incarichi non continuativi, ~120 ore di docenza (classi di 10–15 persone) su competenze digitali e Microsoft 365, oltre a un incarico di tutoring, con monitoraggio dell'apprendimento.</p>
           <div class="timeline-date">04/2024 – 12/2025 · Trento, TN</div>
         </div>
 
@@ -1465,37 +1514,6 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
           <div class="timeline-date">2021 – 2022 · Mezzolombardo · Mezzocorona, TN</div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="lab" class="lab-section section-stone">
-  <div class="container">
-    <div class="section-label" data-reveal>Visual lab</div>
-    <h2 class="section-title" data-reveal>Esperimenti di front-end e <em>direzione visiva.</em></h2>
-    <p class="section-intro" data-reveal>Quattro siti vetrina, uno per settore, per allenare tono, gerarchia e linguaggio visivo su pubblici diversi.</p>
-
-    <div class="lab-grid">
-      <a class="lab-card" href="nero-selecto.html">
-        <div class="lab-card-bg" style="background-image: url('nero-selecto.jpeg');"></div>
-        <div class="lab-card-overlay"></div>
-        <div class="lab-card-body"><div class="lab-card-tag">Specialty Coffee</div><div class="lab-card-title">Nero Selecto</div></div>
-      </a>
-      <a class="lab-card" href="zenith-studio.html">
-        <div class="lab-card-bg" style="background-image: url('zenith-studio.jpeg');"></div>
-        <div class="lab-card-overlay"></div>
-        <div class="lab-card-body"><div class="lab-card-tag">Fitness &amp; Benessere</div><div class="lab-card-title">ZENITH Studio</div></div>
-      </a>
-      <a class="lab-card" href="marchetti-associati.html">
-        <div class="lab-card-bg" style="background-image: url('marchetti-associati.jpeg');"></div>
-        <div class="lab-card-overlay"></div>
-        <div class="lab-card-body"><div class="lab-card-tag">Studio Legale</div><div class="lab-card-title">Marchetti &amp; Associati</div></div>
-      </a>
-      <a class="lab-card" href="ristorante.html">
-        <div class="lab-card-bg" style="background-image: url('osteria-quercia.jpeg');"></div>
-        <div class="lab-card-overlay"></div>
-        <div class="lab-card-body"><div class="lab-card-tag">Ristorazione</div><div class="lab-card-title">Osteria della Quercia</div></div>
-      </a>
     </div>
   </div>
 </section>
@@ -1560,7 +1578,7 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
   const track = document.getElementById('tickerTrack');
   if (!track) return;
   const items = [
-    { key: 'Learning', val: 'percorsi formativi e onboarding' },
+    { key: 'Learning', val: 'ecosistema formativo per 600 persone in costruzione' },
     { key: 'Knowledge', val: 'documentazione e portali interni' },
     { key: 'UX', val: 'interfacce, gerarchie e prototipi' },
     { key: 'AI', val: 'analisi, sintesi e contenuti' },
@@ -1716,7 +1734,7 @@ img, video, iframe, svg { max-width: 100%; height: auto; }
   }
   follow();
 
-  document.querySelectorAll('a, button, summary, .focus-card, .orbit-card, .lab-card').forEach(el => {
+  document.querySelectorAll('a, button, summary, .focus-card, .orbit-card').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-link'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-link'));
   });
